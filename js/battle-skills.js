@@ -23,7 +23,7 @@
     druid:{passive:{icon:"🌿",name:"Сила природы",desc:"Все исцеления Друида восстанавливают на 20% больше здоровья"},a1:{icon:"🌱",name:"Цветение жизни",cd:15,desc:"Восстанавливает всем союзникам 16% их максимального здоровья"},a2:{icon:"🍃",name:"Корни жизни",cd:19,desc:"Лечит самого раненого союзника на 35% максимального HP и даёт щит на 3с"}}
   }};
   bx.skillIcon=(hd,slot)=>{const m=T.skills&&T.skills.heroes&&T.skills.heroes[hd.id];return (m&&m[slot]&&m[slot].icon)||"✦"};
-  bx.heroSwingPos=(hd,h)=>{const k=K(),s=T.getSprite(hd,"hero")[0],sc=bx.scaleOf(s);return {x:h.x+12*k,y:gy()-s.h*sc*0.55}};
+  bx.heroSwingPos=(hd,h)=>{const k=K(),s=T.getSprite(hd,"hero")[0],sc=bx.scaleOf(s);return {x:h.x+12*k,y:gy()+(h.laneY||0)-s.h*sc*0.55}};
   bx.heroSkillTick=(hd,h,dt,st)=>{
     const kit=HERO_SKILLS[hd.id];if(!kit)return;
     const k=K(),findTarget=()=>hd.range==="ranged"?bx.rangedTarget():bx.frontMonster();let fm=findTarget();

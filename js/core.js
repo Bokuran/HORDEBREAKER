@@ -72,8 +72,8 @@
   const CAP=()=>C.partyCap||4;
   const HERO_MIG={knight:"paladin",healer:"necro"};
   function freshHeroes(){const h={};for(const d of C.heroes){const free=(d.recruitCost||0)<=0,eq={};for(const s of Object.keys(C.slots))eq[s]=null;h[d.id]={lvl:free?1:0,rec:free,equip:eq}}return h}
-  function defaults(){return{v:2,gold:BAL.startGold||0,gems:0,wave:1,maxWave:1,heroes:freshHeroes(),party:[],order:[],inventory:[],equipped:{},nextUid:1,lazaretLvl:0,mineLvl:0,atlas:{gold:0,health:0,damage:0,loot:0},settings:{speed:1,muted:false,auto:true,autoSell:"off"},prestiges:0,victory:false,hint:true,lastSeen:Date.now(),stats:{kills:0,bosses:0,gold:0,play:0,drops:0}}}
-  let S=defaults(),hadSave=false;
+  function defaults(){return{v:2,balanceVersion:BAL.progression.version,gold:BAL.startGold||0,gems:0,wave:1,maxWave:1,heroes:freshHeroes(),party:[],order:[],inventory:[],equipped:{},nextUid:1,lazaretLvl:0,mineLvl:0,atlas:{gold:0,health:0,damage:0,loot:0},settings:{speed:1,muted:false,auto:true,autoSell:"off"},prestiges:0,victory:false,hint:true,lastSeen:Date.now(),stats:{kills:0,bosses:0,gold:0,play:0,drops:0}}}
+  let S=defaults(),hadSave=false,loadedRaw=null,saveBlocked=false;
   let loadingItemUids=null;
   function validateItem(it){if(!it||typeof it!=="object"||Array.isArray(it))return null;const def=C.items.find(x=>x.id===it.defId);if(!def||!C.slots[def.slot]||!it.stats||typeof it.stats!=="object"||Array.isArray(it.stats))return null;const rar=C.rarities.find(r=>r.id===it.rarity)||C.rarities[0];let uid=String(it.uid||"");if(!uid||loadingItemUids?.has(uid)){do{uid="i"+(S.nextUid++)}while(loadingItemUids?.has(uid))}if(loadingItemUids)loadingItemUids.add(uid);const stats={};for(const k of Object.keys(def.stats)){
     const legacyArmor=k==="armor"&&it.stats.armor==null&&it.stats.defPct!=null;
@@ -81,19 +81,20 @@
     stats[k]=Number.isFinite(v)?U.clamp(v,0,1e12):0;
   }const divineScale=Number(it.divineScale)||0;if(rar.id==="divine"&&divineScale<10.5){const factor=10.5/(divineScale>0?divineScale:5.2);for(const k in stats)stats[k]=U.round1((+stats[k]||0)*factor)}return{uid,defId:def.id,slot:def.slot,rarity:rar.id,ilvl:Math.min(BAL.hero.maxLevel,Math.max(1,it.ilvl|0||1)),stats,value:Math.max(1,it.value|0||1),enhance:Math.max(0,Math.min(5,it.enhance|0)),divineScale:rar.id==="divine"?10.5:0}}
   function ensureParty(){if(!S.party.length){const rec=C.heroes.filter(h=>S.heroes[h.id]?.rec).map(h=>h.id);S.party=rec.slice(0,CAP())}S.party=S.party.filter(id=>S.heroes[id]?.rec).slice(0,CAP());if(!S.party.length){const first=C.heroes.find(h=>S.heroes[h.id]?.rec);if(first)S.party=[first.id]}}
-  T.load=function(){S=defaults();hadSave=false;try{const raw=localStorage.getItem(KEY);if(raw){const d=JSON.parse(raw);if(!d||typeof d!=="object"||Array.isArray(d))throw new Error("invalid save root");hadSave=true;const base=defaults();S=Object.assign(base,d);S.gold=Number.isFinite(Number(d.gold))?Math.max(0,Number(d.gold)):base.gold;S.gems=Number.isFinite(Number(d.gems))?Math.max(0,Number(d.gems)):0;S.prestiges=Math.max(0,Number(d.prestiges)|0);S.mineLvl=Math.max(0,Number(d.mineLvl)|0);S.atlas=Object.assign({gold:Math.min(BAL.atlas.maxNodes,Number(d.mineLvl)||0),health:Math.min(BAL.atlas.maxNodes,Number(d.lazaretLvl??d.wallLvl)||0),damage:0,loot:0},d.atlas&&typeof d.atlas==="object"?d.atlas:{});for(const branch of ["gold","health","damage","loot"])S.atlas[branch]=Math.max(0,Math.min(BAL.atlas.maxNodes,Number(S.atlas[branch])|0));S.victory=!!d.victory&&Number(d.maxWave)>200;S.hint=d.hint!==false;S.settings=Object.assign(base.settings,d.settings&&typeof d.settings==="object"&&!Array.isArray(d.settings)?d.settings:{});S.settings.speed=[1,2,3].includes(Number(S.settings.speed))?Number(S.settings.speed):1;S.settings.muted=!!S.settings.muted;S.settings.auto=S.settings.auto!==false;S.settings.autoSell=["off","spare",...C.rarities.map(r=>r.id)].includes(S.settings.autoSell)?S.settings.autoSell:"off";S.stats=Object.assign(base.stats,d.stats&&typeof d.stats==="object"&&!Array.isArray(d.stats)?d.stats:{});for(const key of ["kills","bosses","gold","play","drops"])S.stats[key]=Number.isFinite(Number(S.stats[key]))?Math.max(0,Number(S.stats[key])):0;S.lazaretLvl=Math.max(0,(d.lazaretLvl??d.wallLvl??0)|0);
+  T.load=function(){S=defaults();hadSave=false;loadedRaw=null;saveBlocked=false;try{const raw=localStorage.getItem(KEY);if(raw){const d=JSON.parse(raw);if(!d||typeof d!=="object"||Array.isArray(d))throw new Error("invalid save root");hadSave=true;loadedRaw=raw;const base=defaults();S=Object.assign(base,d);S.balanceVersion=Number(d.balanceVersion)||1;S.gold=Number.isFinite(Number(d.gold))?Math.max(0,Number(d.gold)):base.gold;S.gems=Number.isFinite(Number(d.gems))?Math.max(0,Number(d.gems)):0;S.prestiges=Math.max(0,Number(d.prestiges)|0);S.mineLvl=Math.max(0,Number(d.mineLvl)|0);S.atlas=Object.assign({gold:Math.min(BAL.atlas.maxNodes,Number(d.mineLvl)||0),health:Math.min(BAL.atlas.maxNodes,Number(d.lazaretLvl??d.wallLvl)||0),damage:0,loot:0},d.atlas&&typeof d.atlas==="object"?d.atlas:{});for(const branch of ["gold","health","damage","loot"])S.atlas[branch]=Math.max(0,Math.min(BAL.atlas.maxNodes,Number(S.atlas[branch])|0));S.victory=!!d.victory&&Number(d.maxWave)>200;S.hint=d.hint!==false;S.settings=Object.assign(base.settings,d.settings&&typeof d.settings==="object"&&!Array.isArray(d.settings)?d.settings:{});S.settings.speed=[1,2,3].includes(Number(S.settings.speed))?Number(S.settings.speed):1;S.settings.muted=!!S.settings.muted;S.settings.auto=S.settings.auto!==false;S.settings.autoSell=["off","spare",...C.rarities.map(r=>r.id)].includes(S.settings.autoSell)?S.settings.autoSell:"off";S.stats=Object.assign(base.stats,d.stats&&typeof d.stats==="object"&&!Array.isArray(d.stats)?d.stats:{});for(const key of ["kills","bosses","gold","play","drops"])S.stats[key]=Number.isFinite(Number(S.stats[key]))?Math.max(0,Number(S.stats[key])):0;S.lazaretLvl=Math.max(0,(d.lazaretLvl??d.wallLvl??0)|0);
     const fresh=freshHeroes();
     const rawH=d.heroes&&typeof d.heroes==="object"&&!Array.isArray(d.heroes)?d.heroes:{},dh={};
     for(const k in rawH){const nk=(HERO_MIG[k]&&fresh[HERO_MIG[k]]&&!rawH[HERO_MIG[k]])?HERO_MIG[k]:k;dh[nk]=rawH[k]}
-    for(const id in fresh){const old=dh[id];if(old){fresh[id].lvl=Math.max(0,Math.min(BAL.hero.maxLevel,old.lvl|0));fresh[id].xp=fresh[id].lvl>=BAL.hero.maxLevel?0:Math.max(0,Number(old.xp)||0);fresh[id].rec=!!old.rec||fresh[id].lvl>0;fresh[id].equip=Object.assign(fresh[id].equip,old.equip||{})}}
+    for(const id in fresh){const old=dh[id];if(old){fresh[id].lvl=Math.max(0,Math.min(BAL.hero.maxLevel,old.lvl|0));fresh[id].xp=fresh[id].lvl>=BAL.hero.maxLevel?0:Math.max(0,Number(old.xp)||0);fresh[id].rec=!!old.rec||fresh[id].lvl>0;for(const slot of Object.keys(C.slots))fresh[id].equip[slot]=typeof old.equip?.[slot]==="string"?old.equip[slot]:null}}
     S.heroes=fresh;
     let party=Array.isArray(d.party)?d.party.map(id=>(HERO_MIG[id]&&dh[HERO_MIG[id]])?HERO_MIG[id]:id).filter(id=>S.heroes[id]?.rec):C.heroes.filter(h=>S.heroes[h.id].rec).map(h=>h.id);
     party=[...new Set(party)].slice(0,CAP());S.party=party;ensureParty();
     S.order=Array.isArray(d.order)?[...new Set(d.order.map(id=>(HERO_MIG[id]&&dh[HERO_MIG[id]])?HERO_MIG[id]:id).filter(id=>S.heroes[id]?.rec))]:[];
-    loadingItemUids=new Set();S.inventory=(Array.isArray(d.inventory)?d.inventory:[]).map(validateItem).filter(Boolean);S.equipped={};const rawEquipped=d.equipped&&typeof d.equipped==="object"&&!Array.isArray(d.equipped)?d.equipped:{};for(const uid in rawEquipped){const it=validateItem(rawEquipped[uid]);if(it)S.equipped[it.uid]=it}for(const hid in S.heroes){const h=S.heroes[hid];for(const slot in h.equip){const uid=h.equip[slot];if(uid&&(!S.equipped[uid]||S.equipped[uid].slot!==slot))h.equip[slot]=null}}const used=new Set();for(const hid in S.heroes)for(const s in S.heroes[hid].equip){const u=S.heroes[hid].equip[s];if(u)used.add(u)}for(const uid in S.equipped)if(!used.has(uid)){S.inventory.push(S.equipped[uid]);delete S.equipped[uid]}loadingItemUids=null;const maxUid=[...S.inventory,...Object.values(S.equipped)].reduce((mx,it)=>{const m=/^i(\d+)$/.exec(String(it.uid));return m?Math.max(mx,Number(m[1])):mx},0);const nextUid=Number(S.nextUid);S.nextUid=Math.max(Number.isSafeInteger(nextUid)&&nextUid>0?nextUid:1,maxUid+1);S.wave=U.clamp(S.wave|0||1,1,999999);S.maxWave=Math.max(S.maxWave|0||1,S.wave)}}catch(e){loadingItemUids=null;hadSave=false;S=defaults();console.warn("load failed",e)}ensureParty();T.S=S;if(!S.gearRecovery)overflow(false);recoverRestrictedGear();hsCache={};return{state:S,hadSave}};
+    loadingItemUids=new Set();S.inventory=(Array.isArray(d.inventory)?d.inventory:[]).map(validateItem).filter(Boolean);S.equipped={};const rawEquipped=d.equipped&&typeof d.equipped==="object"&&!Array.isArray(d.equipped)?d.equipped:{};for(const uid in rawEquipped){const it=validateItem(rawEquipped[uid]);if(it)S.equipped[it.uid]=it}for(const hid in S.heroes){const h=S.heroes[hid];for(const slot in h.equip){const uid=h.equip[slot];if(uid&&(!S.equipped[uid]||S.equipped[uid].slot!==slot))h.equip[slot]=null}}const used=new Set();for(const hid in S.heroes)for(const s in S.heroes[hid].equip){const u=S.heroes[hid].equip[s];if(u){if(used.has(u))S.heroes[hid].equip[s]=null;else used.add(u)}}for(const uid in S.equipped)if(!used.has(uid)){S.inventory.push(S.equipped[uid]);delete S.equipped[uid]}loadingItemUids=null;const maxUid=[...S.inventory,...Object.values(S.equipped)].reduce((mx,it)=>{const m=/^i(\d+)$/.exec(String(it.uid));return m?Math.max(mx,Number(m[1])):mx},0);const nextUid=Number(S.nextUid);S.nextUid=Math.max(Number.isSafeInteger(nextUid)&&nextUid>0?nextUid:1,maxUid+1);S.wave=U.clamp(S.wave|0||1,1,999999);S.maxWave=Math.max(S.maxWave|0||1,S.wave)}}catch(e){loadingItemUids=null;hadSave=false;S=defaults();console.warn("load failed",e)}ensureParty();T.S=S;migrateBalance();recoverRestrictedGear();hsCache={};if(!S.gearRecovery)overflow(false);return{state:S,hadSave}};
   const AUTO_BAK_PREFIX="tbh_autobackup_",AUTO_BAK_COUNT=3;
   
   T.save=function(){
+    if(saveBlocked){E.emit("saveError",new Error("Не удалось создать резервную копию перед обновлением баланса"));return false}
     S.lastSeen=Date.now();
     let raw;
     try{raw=JSON.stringify(S)}catch(e){console.error("Save serialization failed",e);E.emit("saveError",e);return false}
@@ -143,9 +144,9 @@
     spawnInt(w){return Math.max(BAL.enemy.spawnMin,BAL.enemy.spawnBase-w*.02)},
     retreatWave(w){return Math.floor((w-1)/C.levelRules.bossEvery)*C.levelRules.bossEvery+1}
   };
-  const heroDef=id=>C.heroes.find(h=>h.id===id),rarityOf=it=>C.rarities.find(r=>r.id===it.rarity)||C.rarities[0],itemDef=it=>C.items.find(i=>i.id===it.defId),sumStat=(items,k)=>items.reduce((s,it)=>s+(+it.stats[k]||0),0),equippedItems=hid=>{const h=S.heroes[hid];return h?Object.values(h.equip).map(uid=>S.equipped[uid]).filter(Boolean):[]},allEquipped=()=>Object.values(S.equipped),relicMult=()=>1;
-  const allowedClass=(it,hid)=>{const d=itemDef(it);return !!d&&(!d.classes||d.classes.includes(hid))};
-  const classOk=(it,hid)=>!!S.heroes[hid]?.rec&&allowedClass(it,hid)&&it.ilvl<=S.heroes[hid].lvl;
+  const heroDef=id=>C.heroes.find(h=>h.id===id),rarityOf=it=>C.rarities.find(r=>r.id===it.rarity)||C.rarities[0],itemDef=it=>C.items.find(i=>i.id===it.defId),sumStat=(items,k)=>items.reduce((s,it)=>s+(+it.stats[k]||0),0),equippedItems=hid=>{const h=S.heroes[hid];return h?Object.entries(h.equip).filter(([slot,uid])=>C.slots[slot]&&S.equipped[uid]?.slot===slot&&classOk(S.equipped[uid],hid)).map(([,uid])=>S.equipped[uid]):[]},allEquipped=()=>Object.values(S.equipped),relicMult=()=>1;
+  const allowedClass=(it,hid)=>{const d=it&&itemDef(it),hd=heroDef(hid);return !!d&&!!hd&&it.slot===d.slot&&(d.armorType!=="heavy"||hd.role==="tank")&&(!d.classes||d.classes.includes(hid))};
+  const classOk=(it,hid)=>!!S.heroes[hid]?.rec&&allowedClass(it,hid)&&Number.isInteger(it.ilvl)&&it.ilvl>=1&&it.ilvl<=S.heroes[hid].lvl;
   T.allowedClass=allowedClass;T.classOk=classOk;
   T.equipReason=(it,hid)=>!S.heroes[hid]?.rec?"Герой не нанят":!allowedClass(it,hid)?"Не подходит классу":it.ilvl>S.heroes[hid].lvl?"Требуется уровень "+it.ilvl:"";
   function recoverRestrictedGear(){
@@ -171,8 +172,37 @@
   E.on("inv",()=>{hsCache={}});
   E.on("party",()=>{hsCache={}});
   E.on("wave",()=>{hsCache={}}); // armor mitigation depends on the current enemy wave
-  const xpNeed=lvl=>Math.ceil(BAL.progression.xpBase*Math.pow(BAL.progression.xpGrowth,Math.max(0,lvl-1)));
-  T.progression={xpNeed,awardKill(wave,boss){const xp=Math.ceil(BAL.progression.xpBase+Math.max(1,wave)*BAL.progression.xpWave)*(boss?5:1);const levels=[];for(const id of S.party){const h=S.heroes[id];if(!h?.rec)continue;const previousLevel=h.lvl;h.xp=(h.xp||0)+xp;while(h.lvl<BAL.hero.maxLevel&&h.xp>=xpNeed(h.lvl)){h.xp-=xpNeed(h.lvl);h.lvl++}
+  const xpNeed=lvl=>Math.ceil(BAL.progression.xpRequiredBase+Math.max(0,lvl-1)*BAL.progression.xpPerLevel);
+  const campaignLevels=[1];
+  {let level=1,xp=0;for(let wave=1;wave<=TOTAL_WAVES;wave++){
+    xp+=Math.ceil(BAL.progression.xpBase+wave*BAL.progression.xpWave)*(WU.isBoss(wave)?5:WU.count(wave));
+    while(level<BAL.hero.maxLevel&&xp>=xpNeed(level)){xp-=xpNeed(level);level++}campaignLevels[wave]=level;
+  }}
+  const levelForWave=wave=>campaignLevels[U.clamp(Math.floor(Number(wave)||1),1,TOTAL_WAVES)];
+  function migrateBalance(){
+    if(!hadSave||S.balanceVersion>=BAL.progression.version)return;
+    try{const key="tbh_balance_backup_v55";if(!localStorage.getItem(key))localStorage.setItem(key,JSON.stringify({at:Date.now(),raw:loadedRaw}))}
+    catch(e){saveBlocked=true;console.error("Balance migration postponed: backup failed",e);return}
+    for(const h of Object.values(S.heroes)){
+      if(!h.rec)continue;
+      let total=Number(h.xp)||0;
+      for(let level=1;level<h.lvl;level++)total+=Math.ceil(BAL.progression.xpBase*Math.pow(BAL.progression.legacyXpGrowth,level-1));
+      h.lvl=1;while(h.lvl<BAL.hero.maxLevel&&total>=xpNeed(h.lvl)){total-=xpNeed(h.lvl);h.lvl++}
+      h.xp=h.lvl>=BAL.hero.maxLevel?0:total;
+    }
+    for(const it of [...S.inventory,...Object.values(S.equipped)]){
+      if(it.rarity==="divine")continue;
+      const oldLevel=it.ilvl,newLevel=levelForWave(oldLevel);
+      const ratio=(1+(newLevel-1)*BAL.drops.itemLevelScale)/(1+(oldLevel-1)*BAL.drops.itemLevelScale);
+      for(const stat in it.stats)it.stats[stat]=U.round1(it.stats[stat]*ratio);
+      it.value=Math.max(1,Math.round(it.value*(BAL.drops.sellBase+newLevel*BAL.drops.sellPerLevel)/(BAL.drops.sellBase+oldLevel*BAL.drops.sellPerLevel)));
+      it.ilvl=newLevel;
+    }
+    S.balanceVersion=BAL.progression.version;
+    if(S.inventory.length>BAL.drops.inventoryCap)S.gearRecovery=true;
+    T.balanceUpdated=true;
+  }
+  T.progression={xpNeed,levelForWave,awardKill(wave,boss){const xp=Math.ceil(BAL.progression.xpBase+Math.max(1,wave)*BAL.progression.xpWave)*(boss?5:1);const levels=[];for(const id of S.party){const h=S.heroes[id];if(!h?.rec)continue;const previousLevel=h.lvl,penalty=Math.max(.1,Math.min(1,(levelForWave(wave)+5)/Math.max(1,h.lvl)));h.xp=(h.xp||0)+Math.max(1,Math.floor(xp*penalty));while(h.lvl<BAL.hero.maxLevel&&h.xp>=xpNeed(h.lvl)){h.xp-=xpNeed(h.lvl);h.lvl++}
       if(h.lvl>=BAL.hero.maxLevel){h.lvl=BAL.hero.maxLevel;h.xp=0}if(h.lvl>previousLevel)levels.push({heroId:id,level:h.lvl})}if(levels.length){E.emit("heroes");levels.forEach(level=>E.emit("levelUp",level));E.emit("sfx","lvl")}return xp}};
   function slotScore(it,slot){const s=it.stats;if(slot==="armor")return(s.armor||0)*.4+(s.hpFlat||0)*.12+(s.goldPct||0)*.6;return(s.dmgPct||0)*3+(s.atkSpd||0)*3+(s.crit||0)*4+(s.critDmg||0)*1.2+(s.goldPct||0)*.6}
   function overflow(needsSlot=true){
@@ -193,8 +223,8 @@
   function addRawGold(n,x,y){n=Math.ceil(n);S.gold+=n;S.stats.gold+=n;E.emit("gold",{amount:n,x,y,raw:true})}
   const IT=T.items={
     power(it){let p=0;for(const k in it.stats)if(k!=="regen")p+=it.stats[k]*(C.statMeta[k]?.weight||1);return p},
-    statLines(it){return Object.keys(it.stats).filter(k=>k!=="regen").map(k=>{const m=C.statMeta[k]||{label:k,suffix:"",icon:"•"};return`${m.icon} +${U.round1(it.stats[k])}${m.suffix} ${m.label}`})},
-    roll(wave,boss){const rar=U.weighted(C.rarities,boss?"bossWeight":"weight"),def=U.pick(wave<=10&&Math.random()<.55?C.items.filter(d=>!d.classes||d.classes.some(id=>S.party.includes(id))):C.items),ilvl=U.clamp(wave+U.irand(-1,1)+(boss?2:0),1,BAL.hero.maxLevel),stats={};for(const k in def.stats)stats[k]=U.round1(def.stats[k]*(1+(ilvl-1)*BAL.drops.itemLevelScale)*rar.mult*U.rand(.9,1.1));const value=Math.ceil((BAL.drops.sellBase+ilvl*BAL.drops.sellPerLevel)*rar.mult*rar.mult*(boss?1.5:1));return{uid:"i"+(S.nextUid++),defId:def.id,slot:def.slot,rarity:rar.id,ilvl,stats,value,enhance:0}},
+    statLines(it,hid){return Object.keys(it.stats).filter(k=>k!=="regen").map(k=>{const m=C.statMeta[k]||{label:k,suffix:"",icon:"•"};const healers=hid?heroDef(hid)?.role==="healer":C.heroes.some(h=>h.role==="healer"&&allowedClass(it,h.id));const label=k==="dmgPct"?(healers?"урон и лечение":"урон"):m.label;return`${m.icon} +${U.round1(it.stats[k])}${m.suffix} ${label}`})},
+    roll(wave,boss){const rar=U.weighted(C.rarities,boss?"bossWeight":"weight"),def=U.pick(wave<=10&&Math.random()<.55?C.items.filter(d=>!d.classes||d.classes.some(id=>S.party.includes(id))):C.items),ilvl=U.clamp(levelForWave(wave)+U.irand(-1,1)+(boss?1:0),1,BAL.hero.maxLevel),stats={};for(const k in def.stats)stats[k]=U.round1(def.stats[k]*(1+(ilvl-1)*BAL.drops.itemLevelScale)*rar.mult*U.rand(.9,1.1));const value=Math.ceil((BAL.drops.sellBase+ilvl*BAL.drops.sellPerLevel)*rar.mult*rar.mult*(boss?1.5:1));return{uid:"i"+(S.nextUid++),defId:def.id,slot:def.slot,rarity:rar.id,ilvl,stats,value,enhance:0}},
     handleDrop(item,x,y,source){const r=D.rarityOf(item),def=itemDef(item),idx=C.rarities.findIndex(q=>q.id===r.id),th=S.settings.autoSell,thIdx=th==="off"?-1:C.rarities.findIndex(q=>q.id===th);S.stats.drops++;if(thIdx>=0&&idx<=thIdx){addRawGold(item.value,x,y);E.emit("drop",{item,x,y,autoSold:true,source});return}if(th==="spare"&&!IT.bestUids([item]).has(item.uid)){addRawGold(item.value,x,y);E.emit("drop",{item,x,y,autoSold:true,source});return}if(S.gearRecovery&&S.inventory.length>BAL.drops.inventoryCap){addRawGold(item.value,x,y);E.emit("drop",{item,x,y,autoSold:true,source});return}S.inventory.push(item);IT.sweepAutoSell();overflow(false);const autoSold=!S.inventory.some(i=>i.uid===item.uid);E.emit("inv");E.emit("drop",{item,x,y,autoSold,source});if(idx>=3&&!autoSold)E.emit("toast",{msg:`${def.icon} ${r.name} дроп: ${def.name}!`,type:"drop"})},
     maybeDrop(wave,boss,x,y,source){let n=0;if(Math.random()<(boss?BAL.drops.bossChance:D.dropChance()))n++;if(boss&&Math.random()<BAL.drops.bossExtraChance)n++;for(let i=0;i<n;i++)IT.handleDrop(IT.roll(wave,boss),x,y,source)},
     equip(uid,heroId){const idx=S.inventory.findIndex(i=>i.uid===uid),h=S.heroes[heroId];if(idx<0||!h||!h.rec)return false;const it=S.inventory[idx];
@@ -232,8 +262,8 @@
       const itemsFor=hid=>slots.map(slot=>assign[hid]?.[slot]).filter(Boolean).map(uid=>byUid[uid]).filter(Boolean);
       const scoreFor=(hid,items)=>{
         const st=D.heroStats(hid,items),output=st.isHealer?st.hps:st.dps;
-        return Math.log1p(Math.max(0,output))*100+Math.log1p(Math.max(0,st.maxHp))*6+
-          st.armor*.035+items.reduce((v,it)=>v+(+it.stats.goldPct||0),0)*.15;
+        return Math.log1p(Math.max(0,output))*100+Math.log1p(Math.max(0,st.maxHp/(1-st.defPct/100)))*(heroDef(hid).role==="tank"?35:14)+
+          items.reduce((v,it)=>v+(+it.stats.goldPct||0),0)*.15;
       };
       // Never overwrite a hero's existing slot with a worse item merely because
       // that item has a higher generic rating. Consider actual hero statistics.

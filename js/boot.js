@@ -3,7 +3,7 @@
 (function(){
   try{
     if(localStorage.getItem("tbh_wipe")){
-      ["tbh_idle_equipment_v1","tbh_backup_v1","tbh_autobackup_1","tbh_autobackup_2","tbh_autobackup_3","tbh_import_flag","tbh_wipe"].forEach(function(k){localStorage.removeItem(k)});
+      ["tbh_idle_equipment_v1","tbh_backup_v1","tbh_autobackup_1","tbh_autobackup_2","tbh_autobackup_3","tbh_import_flag","tbh_wipe","tbh_balance_backup_v55"].forEach(function(k){localStorage.removeItem(k)});
     }
   }catch(e){}
 })();

@@ -605,24 +605,20 @@ assert.equal(battleState.hs.paladin.sk.a2, 7, 'A partially charged skill must ke
 assert.equal(battleState.hs.paladin.sk.mom, 3, 'Passive combat counters should not be reset at wave transition');
 assert.equal(battleState.hs.paladin.buffs.haste, 1.5, 'Short combat buffs should continue through the inter-wave transition');
 
-// No-enemy gaps and intermission must not pull melee heroes/camera backwards.
+// Travel preserves world progress while heroes regroup at their centered homes.
 battleState.advance = 90;
-battleState.hs.paladin.walkOff = 72;
-battleState.hs.paladin.home = 80;
-battleState.monsters = [];
-battleState.spawnLeft = 1;
-battleState.spawnT = 99;
-battleState.state = 'inter';
-battleState.t = 99;
-runtime.battle.update(0.1);
-assert.ok(battleState.advance >= 90, 'Intermission must preserve forward progress instead of returning to the left edge');
-assert.equal(battleState.hs.paladin.walkOff, 72, 'Victory must preserve melee position between waves');
-assert.equal(battleState.hs.paladin.x, battleState.hs.paladin.home + battleState.hs.paladin.walkOff, 'Hero position must follow its forward formation offset');
-battleState.hs.paladin.walkOff = 72;
-battleState.state = 'fight';
-runtime.battle.update(0.1);
-assert.ok(battleState.advance >= 0, 'Camera offset must remain valid during a spawn gap');
-assert.ok(battleState.hs.paladin.walkOff >= 72, 'Melee hero must not return to formation when no target is on screen');
+Object.assign(battleState.hs.paladin,{x:400,home:80,walkOff:320,lunge:0,castT:0,cool:999});
+battleState.monsters = []; battleState.projs = [];
+battleState.spawnLeft = 1; battleState.spawnT = 99;
+battleState.state = 'inter'; battleState.t = 99; battleState.combatUntil = 0;
+const interTravelBefore=battleState.travel;
+for(let tick=0;tick<70;tick++)runtime.battle.update(.05);
+assert.ok(battleState.advance>=90,'World progress must not reset to the far-left edge');
+assert.ok(Math.abs(battleState.hs.paladin.walkOff)<.01,'Melee hero must rejoin its traveling formation');
+assert.equal(battleState.hs.paladin.x,battleState.hs.paladin.home);
+assert.ok(battleState.travel>interTravelBefore&&battleState.cameraMoving,'Regrouping must preserve traveling scenery');
+battleState.state='fight';runtime.battle.update(.1);
+assert.ok(Math.abs(battleState.hs.paladin.walkOff)<.01,'A spawn gap must keep the party in formation');
 
 const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
 assert.doesNotMatch(html, /firebase-(?:config|cloud)\.js/, 'Firebase account/cloud scripts must be removed for local-only saves');
@@ -671,7 +667,7 @@ Object.assign(mobilePaladin, {
 });
 for (let tick = 0; tick < 40; tick++) {
   runtime.battle.update(0.05);
-  assert.ok(mobilePaladin.x <= 360 * 0.58 + 0.001, 'Mobile melee hero must stay in the visible left/middle area of the arena');
+  assert.ok(mobilePaladin.x <= 360 - 10 * runtime.bx.K(), 'Mobile melee hero must stay within the visible arena');
 }
 assert.ok(runtime.battleState.monsters[0].x < 340, 'Enemy must reach the visible arena instead of being fought off-screen');
 runtime.bx.W = originalArenaWidth;
@@ -802,10 +798,11 @@ console.log('Foreground-only audio, no stale sound bursts, complete hero feedbac
 
   // Regression from the recorded desktop gameplay: once a hero stops moving
   // on screen, the world must STILL scroll in the travel phase.
-  movementState.monsters[0].x=340;
+  movementState.monsters[0].x=1000;
+  movementState.monsters[0].spd=0;movementState.monsters[0].baseSpd=0;
   movementState.combatUntil=movementState.time-2;
   movementState.advance=10000;
-  hero.walkOff=10000;
+  hero.x=360*.58;hero.walkOff=0;
   hero.lunge=0;hero.castT=0;
   runtime.battle.update(.05);
   const screenX=hero.x,worldBefore=movementState.travel;
@@ -1024,7 +1021,7 @@ console.log('Painted campaign art and original location crests: OK.');
  reset();runtime.battle.update(.05);
  for(const id of ids)assert.ok(B.projs.some(p=>p.heroId===id&&p.target===enemy),id+' must attack a visible distant target');
  reset();enemy.x=bx.W+50;runtime.battle.update(.05);assert.equal(B.projs.length,0,'No ranged shots at an offscreen enemy');
- enemy.x=1250;reset();B.hs.archer.hp*=.5;runtime.battle.update(.05);assert.ok(B.projs.some(p=>p.type==='heal'&&p.targetHero===B.hs.archer),'Healers must still prioritize injured allies');
+ enemy.x=1250;reset();B.hs.archer.hp*=.5;const injuredHp=B.hs.archer.hp;runtime.battle.update(.05);assert.ok(B.projs.some(p=>p.type==='heal'&&p.targetHero===B.hs.archer)||B.hs.archer.hp>injuredHp+1,'Healers must prioritize injured allies, including heals that arrive within the same frame');
  reset();B.hs.archer.hp*=.99;runtime.battle.update(.05);assert.ok(B.projs.some(p=>p.heroId==='druid'&&p.target===enemy),'Tiny HP deficits must not block druid attacks');
  reset();for(const id of ids)B.hs[id].cool=999;
  const spr=runtime.getSprite(enemy.def,'mob')[0],ty=bx.gy()-spr.h*bx.scaleOf(spr)*.52;

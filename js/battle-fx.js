@@ -8,7 +8,7 @@
   };
   const point=m=>{const s=T.getSprite(m.def,"mob")[0];return{x:m.x,y:bx.gy()-s.h*bx.scaleOf(s)*(m.boss?1.3:1)*.52-(m.flying?20*bx.K():0)}};
   bx.enemyImpactPoint=point;
-  const allyPoint=h=>{const s=T.getSprite(h.def,"hero")[0];return{x:h.x,y:bx.gy()-s.h*bx.scaleOf(s)*.5}};
+  const allyPoint=h=>{const s=T.getSprite(h.def,"hero")[0];return{x:h.x,y:bx.gy()+(h.laneY||0)-s.h*bx.scaleOf(s)*.5}};
   bx.updateFx=dt=>{for(const f of B.fx)f.age+=dt;B.fx=B.fx.filter(f=>f.age<f.duration)};
   bx.heroFx=(heroId,x,y,crit=false)=>emit("impact",x,y,{heroId,crit,duration:crit?.48:.32});
   bx.healFx=(h,heroId)=>{

@@ -114,7 +114,7 @@
 
   function renderMain(){
     const cur=currentSave(),p=preview(cur);
-    const bak=readJSON(BAK);
+    const bak=readJSON(BAK),balanceBackup=readJSON("tbh_balance_backup_v55");
     const autoBackups=[1,2,3].map(i=>({i,data:readJSON(AUTO_BAK(i))})).filter(x=>x.data&&typeof x.data.raw==="string").map(x=>{try{return {...x,save:JSON.parse(x.data.raw)}}catch(e){return null}}).filter(Boolean);
     const autoRows=autoBackups.map(x=>{const sp=preview(x.save);return `<div class="svSlot"><span class="n">↶${x.i}</span><span class="info"><b>Волна ${sp.wave}</b> · 💎${sp.gems} · ⚔${sp.rec}<small>${x.data.at?new Date(x.data.at).toLocaleString("ru-RU"):"Автокопия"}</small></span><button class="svBtn green" data-act="autoRestore" data-slot="${x.i}">Восстановить</button></div>`}).join("");
     const slots=[1,2,3].map(i=>{const s=readJSON(SLOT(i));
@@ -135,6 +135,7 @@
       <div class="svErr" id="svErr"></div>
       <div class="svSec">Локальные слоты</div>${slots}
       ${bak?`<div class="svSec">Резервная копия переноса</div><div class="svSlot"><span class="n">↩</span><span class="info"><b>Предыдущее сохранение</b><small>${bak.at?new Date(bak.at).toLocaleString("ru-RU"):""}</small></span><button class="svBtn green" data-act="restore">Вернуть</button><button class="svBtn danger" data-act="delbak">✕</button></div>`:""}
+      ${balanceBackup?.raw?`<div class="svSec">До обновления баланса</div><p class="svHint">Исходное сохранение перед пересчётом уровней и снаряжения.</p><button class="svBtn" data-act="balanceFile">💾 Скачать резервную копию</button>`:""}
       <div class="svSec">Автоматические копии</div><p class="svHint">Игра хранит до трёх предыдущих локальных сохранений. Копии обновляются автоматически не чаще раза в 30 секунд при изменении прогресса.</p>${autoRows||'<p class="svHint">Автоматические копии появятся после следующего изменения сохранения.</p>'}
     `;
     fileInput=document.createElement("input");fileInput.type="file";fileInput.accept=".json,.tbh,application/json,text/plain";fileInput.style.display="none";body.appendChild(fileInput);
@@ -158,7 +159,7 @@
 
   function readFile(f){const r=new FileReader();r.onload=()=>{try{pending=parseAny(String(r.result));T.audio.play("click");renderConfirm()}catch(e){err(e.message)}};r.onerror=()=>err("Не удалось прочитать файл.");r.readAsText(f)}
 
-  function download(){const save=currentSave();const env=envelope(save);const blob=new Blob([JSON.stringify(env,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");const d=new Date();const pad=n=>String(n).padStart(2,"0");a.href=url;a.download=`tbh-save-w${save.wave||1}-${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);T.toast("Файл сохранения скачан","success");T.audio.play("chest")}
+  function download(save=currentSave()){const env=envelope(save);const blob=new Blob([JSON.stringify(env,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");const d=new Date();const pad=n=>String(n).padStart(2,"0");a.href=url;a.download=`tbh-save-w${save.wave||1}-${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}-${pad(d.getHours())}${pad(d.getMinutes())}.json`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);T.toast("Файл сохранения скачан","success");T.audio.play("chest")}
   function copyCode(){const code="TBH1."+b64enc(JSON.stringify(envelope(currentSave())));const ta=body.querySelector("#svCode");if(ta){ta.value=code;ta.focus();ta.select()}
     const done=()=>T.toast("Код переноса скопирован ("+code.length+" символов — копируй целиком)","success");
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(code).then(done).catch(()=>{try{document.execCommand("copy");done()}catch(e){T.toast("Скопируй код из поля вручную (выделить всё)","info")}})}
@@ -175,6 +176,7 @@
   function act(a,slot){
     T.audio&&T.audio.play("click");
     if(a==="file")download();
+    else if(a==="balanceFile"){const backup=readJSON("tbh_balance_backup_v55");if(backup?.raw)download(JSON.parse(backup.raw));}
     else if(a==="code")copyCode();
     else if(a==="pick")fileInput.click();
     else if(a==="loadcode"){try{pending=parseAny(body.querySelector("#svCode").value);renderConfirm()}catch(e){err(e.message)}}

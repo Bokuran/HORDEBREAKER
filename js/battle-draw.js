@@ -103,9 +103,9 @@
   };
   bx.drawHeroes=(k,G)=>{let i=0;for(const hd of T.config.heroes){if(!T.S.heroes[hd.id]?.rec||!T.inParty(hd.id))continue;const h=B.hs[hd.id],s=T.getSprite(hd,"hero")[0],sc=bx.scaleOf(s),flip=hd.sprite?.face==="left",bob=h.dead?0:Math.round(Math.sin(B.time*(B.cameraMoving?12:5)+i*1.7)*(B.cameraMoving?2.8:1)),
     stepX=B.cameraMoving?Math.sin(B.time*9+i*1.7)*1.2:0,
-    lx=h.lunge*(hd.range==="melee"?10:-3),x=h.x-s.w*sc/2+lx+stepX,y=G-s.h*sc+bob;
+    lx=h.lunge*(hd.range==="melee"?10:-3),x=h.x-s.w*sc/2+lx+stepX,y=G+(h.laneY||0)-s.h*sc+bob;
     if(h.dead){bx.drawFallen(h,hd,s,sc,G);i++;continue}
-    bx.shadow(h.x,G-2,s.w*sc*.42);
+    bx.shadow(h.x,G+(h.laneY||0)-2,s.w*sc*.42);
     if(B.cameraMoving&&!bx.REDUCED.matches){
       // Small alternating footstep puffs make walking legible while heroes
       // remain camera-centered; no footsteps or ground motion in combat.
@@ -179,7 +179,7 @@
       const s=T.getSprite(hd,"hero")[0],sc=bx.scaleOf(s),age=2.2-h.levelUpT;
       const rise=bx.REDUCED.matches?0:Math.min(1,age/1.6)*16;
       const x=U.clamp(h.dead?(h.deadX??h.x):h.x,width/2+2,bx.W-width/2-2);
-      let y=Math.max(34,G-s.h*sc*(h.dead?.34:1)-54-rise);
+      let y=Math.max(34,G+(h.dead?0:(h.laneY||0))-s.h*sc*(h.dead?.34:1)-54-rise);
       // Stagger nearby labels when several party members level up together.
       while(labels.some(p=>Math.abs(p.x-x)<width+4&&Math.abs(p.y-y)<34)&&y>=68)y-=34;
       labels.push({x,y});

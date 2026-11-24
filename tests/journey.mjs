@@ -64,7 +64,7 @@ try {
         const drawnText = [], fillText = T.bx.ctx.fillText;
         T.bx.ctx.fillText = function (text, ...args) { drawnText.push(String(text)); return fillText.call(this, text, ...args); };
         try { T.battle.render(); } finally { T.bx.ctx.fillText = fillText; }
-        return { engaged, delay, next, before, travel: B.travel, moving: B.cameraMoving, wentBack, state: B.state, wave: T.S.wave, remaining: B.t, drawnText, x: previous, width: T.bx.W };
+        return { engaged, delay, next, before, travel: B.travel, moving: B.cameraMoving, wentBack, regrouped: party.every(id=>Math.abs(B.hs[id].x-B.hs[id].home)<1), state: B.state, wave: T.S.wave, remaining: B.t, drawnText, x: previous, width: T.bx.W };
       }, { wave, party, auto });
       assert.ok(result.engaged, `${name}: encounter must stop travel before victory`);
       assert.equal(result.delay, 5, 'Victory keeps the original five-second delay');
@@ -72,7 +72,7 @@ try {
       assert.equal(result.state, 'inter');
       assert.equal(result.wave, wave, 'Next wave must not start early');
       assert.ok(Math.abs(result.remaining - 1) < .001);
-      assert.equal(result.wentBack, false, `${name}: heroes must never return to the left after victory`);
+      assert.ok(result.regrouped, `${name}: heroes must rejoin the traveling formation after victory`);
       assert.ok(result.moving && result.travel > result.before, 'Scenery and walking animation must continue between battles');
       assert.ok(result.x.every(x => x > 0 && x < result.width), 'The whole party must remain on screen');
       assert.ok(!result.drawnText.some(text => /СЛЕДУЮЩАЯ ВОЛНА|передышка/.test(text)), 'No countdown panel may be drawn');

@@ -3,7 +3,7 @@
   TBH.config = TBH.config || {};
   TBH.config.slots = { weapon:{name:"Оружие",icon:"🗡"}, armor:{name:"Броня",icon:"🛡"}, talisman:{name:"Талисман",icon:"🧿"} };
   TBH.config.statMeta = {
-    dmgPct:{label:"урон/лечение",suffix:"%",icon:"⚔",weight:3},
+    dmgPct:{label:"урон",suffix:"%",icon:"⚔",weight:3},
     atkSpd:{label:"скор. атаки",suffix:"%",icon:"⚡",weight:3},
     crit:{label:"шанс крита",suffix:"%",icon:"🎯",weight:4},
     critDmg:{label:"сила крита",suffix:"%",icon:"💥",weight:1.5},
@@ -26,9 +26,9 @@
     {id:"spark_staff",classes:["mage","monk","necro","druid"],slot:"weapon",name:"Посох искр",icon:"🔮",art:"staff",stats:{dmgPct:12,atkSpd:2}},
     {id:"moon_blade",classes:["paladin","rogue","barbarian"],slot:"weapon",name:"Лунный клинок",icon:"🌙",art:"blade",stats:{dmgPct:18,critDmg:12}},
     {id:"leather_vest",classes:["paladin","archer","monk","rogue","barbarian","druid"],slot:"armor",name:"Кожаный жилет",icon:"🥋",art:"vest",stats:{hpFlat:30,armor:20}},
-    {id:"chainmail",classes:["paladin","barbarian"],slot:"armor",name:"Кольчуга",icon:"⛓",art:"mail",stats:{hpFlat:50,armor:30}},
-    {id:"guard_shield",classes:["paladin","barbarian"],slot:"armor",name:"Щит стража",icon:"🛡",art:"shield",stats:{hpFlat:75,armor:40}},
-    {id:"dragon_plate",classes:["paladin","barbarian"],slot:"armor",name:"Драконья броня",icon:"🐉",art:"plate",stats:{hpFlat:120,armor:50}},
+    {id:"chainmail",armorType:"heavy",classes:["paladin","barbarian"],slot:"armor",name:"Кольчуга",icon:"⛓",art:"mail",stats:{hpFlat:50,armor:30}},
+    {id:"guard_shield",armorType:"heavy",classes:["paladin","barbarian"],slot:"armor",name:"Щит стража",icon:"🛡",art:"shield",stats:{hpFlat:75,armor:40}},
+    {id:"dragon_plate",armorType:"heavy",classes:["paladin","barbarian"],slot:"armor",name:"Драконья броня",icon:"🐉",art:"plate",stats:{hpFlat:120,armor:50}},
     {id:"lucky_coin",slot:"talisman",name:"Монетка удачи",icon:"🪙",art:"coin",stats:{goldPct:8}},
     {id:"wolf_fang",slot:"talisman",name:"Коготь волка",icon:"🐺",art:"fang",stats:{crit:3,critDmg:10}},
     {id:"wind_feather",slot:"talisman",name:"Перо ветра",icon:"🪶",art:"feather",stats:{atkSpd:5}},

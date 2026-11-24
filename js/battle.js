@@ -2,7 +2,7 @@
   const T=window.TBH,C=T.config,U=T.util,E=T.events,BAL=C.balance;
   const bx=T.bx,B=bx.B,ctx=bx.ctx;
   const K=bx.K,gy=bx.gy,ARC=()=>bx.MELEE_ARC*K();
-  const WALK=55;          // скорость шага вперёд
+  const WALK=140;          // скорость шага вперёд
   const INTER=5;
   B.travel=B.travel||0;B.cameraMoving=false;B.combatUntil=0;
   function modelHalf(def,kind,bossMult){const s=T.getSprite(def,kind)[0];return s.w*bx.scaleOf(s)*(bossMult||1)/2}
@@ -23,7 +23,7 @@
         h.buffs=h.buffs||{};h.castT=0}
       const z=T.waves.zoneFor(w);bx.zoneBg(z.zone);if(B.bossWave)bx.banner("👑 "+T.waves.bossDef(w).name,"boss");else if(!opt.silent)bx.banner("ВОЛНА "+w);if(z.zone.id!==prevZone)E.emit("toast",{msg:`${z.zone.icon||"🗺"} Новая зона: ${z.zone.name}`,type:"info"});E.emit("wave",{wave:w,boss:B.bossWave})},
     update(dt,realDt=dt){const S=T.S;B.time+=dt;S.stats.play+=Math.max(0,Number(realDt)||0);if(B.state==="inter"){B.t-=dt;if(B.t<=0)Battle.startWave(B.next)}else{if(B.spawnLeft>0){B.spawnT-=dt;if(B.spawnT<=0){Battle.spawn(B.bossWave);B.spawnLeft--;B.spawnT=B.spawnInt}}if(B.bossWave&&B.boss&&!B.boss.dead){B.bossT-=dt;if(B.bossT<=0){Battle.retreat("⏱ Босс не повержен за "+BAL.boss.timer+"с!","БОСС ВЫСТОЯЛ");return}}if(B.spawnLeft===0&&B.monsters.every(m=>m.dead))Battle.clearWave()}
-      const k=K(),F=T.formation(),n=F.length,STEP=44*k;
+      const k=K(),F=T.formation(),n=F.length,STEP=Math.max(44*k,...F.map(hd=>modelHalf(hd,"hero")*2+8*k));
       // Walking is a distinct camera phase: once heroes reach their on-screen
       // formation position they walk in place while the scenery travels.
       // Never use change in hero.x as the camera's sole travel signal.
@@ -36,6 +36,7 @@
       const meleeIds=F.filter(h=>h.range==="melee"&&!B.hs[h.id].dead).map(h=>h.id);
       const fm=bx.frontMonster();
       const maxA=Math.max(0,bx.W*0.5-homeBase(0));
+      const moveTo=(value,target,speed)=>value+Math.sign(target-value)*Math.min(Math.abs(target-value),speed*dt);
       // Melee attacks and ranged projectiles use a finite engagement distance.
       // Once an enemy enters that zone, stop the camera immediately, including
       // when the hero is already stationary in the middle of the screen.
@@ -77,12 +78,13 @@
       B.monsters=B.monsters.filter(m=>!m.dead||m.deathT>0);if(n&&bx.livingHeroes().length===0){Battle.retreat("💀 Отряд полностью пал!","ОТРЯД ПАЛ");return}
       for(const hd of C.heroes){const hs=S.heroes[hd.id];if(!hs?.rec||!T.inParty(hd.id))continue;const fi=F.findIndex(x=>x.id===hd.id);if(fi<0)continue;const h=B.hs[hd.id];h.lunge=Math.max(0,h.lunge-dt*5);h.hurt=Math.max(0,h.hurt-dt);h.healGlow=Math.max(0,h.healGlow-dt);h.castT=Math.max(0,(h.castT||0)-dt);h.home=homeBase(fi)+B.advance;
         h.levelUpT=Math.max(0,(h.levelUpT||0)-Math.max(0,realDt));
+        h.x=U.clamp(h.x,modelHalf(hd,"hero")+8*k,bx.W-modelHalf(hd,"hero")-10*k);
         if(h.dead){h.deadAge=(h.deadAge||0)+dt;continue}
         const st=T.derived.heroStats(hd.id);h.maxHp=st.maxHp;h.hp=Math.min(h.maxHp,h.hp+st.regen*dt);
         bx.heroSkillTick(hd,h,dt,st);
         if(h.dead)continue;
         if(hd.role==="healer"){
-          h.x=Math.min(h.home,bx.W-modelHalf(hd,"hero")-10*k);h.walkOff=0;
+          h.x=moveTo(h.x,Math.min(h.home,bx.W-modelHalf(hd,"hero")-10*k),WALK*k);h.walkOff=h.x-h.home;h.laneY=moveTo(h.laneY||0,0,80*k);
           h.cool-=dt;
           if(h.cool<=0){
             // Do not spend every attack on tiny HP deficits or redundant heals already in flight.
@@ -99,24 +101,20 @@
             const i=Math.max(0,meleeIds.indexOf(hd.id));
             const halves=target?(modelHalf(hd,"hero")+modelHalf(target.def,"mob",target.boss?1.3:1)):0;
             const bodyGap=target?contactGap(hd,target):8*k;
-            const lane=i*(STEP+12*k);
-            const desiredX=target?target.x-bodyGap-lane:h.home;
-            // The camera does not follow heroes: stop chasing before the character
-            // reaches the right border, allowing enemies to approach on-screen.
+            // Fighters share contact distance, with shallow depth lanes for a single boss.
+            // During travel they return smoothly to their distinct formation homes.
+            const lane=i*1.5*k;
             const rightInset=modelHalf(hd,"hero")+10*k;
-            const safeFrontX=Math.min(bx.W-rightInset,bx.W*(bx.W<700?.58:.68));
-            const maxWalkOff=Math.max(0,safeFrontX-h.home);
-            const desiredOff=Math.max(0,Math.min(desiredX-h.home,maxWalkOff));
-            h.walkOff=Math.min(Math.max(0,h.walkOff||0),maxWalkOff);
-            // Герой не отступает к home между целями/волнами. Новая цель
-            // может только увеличить его выдвижение, поэтому рывка вперёд-назад нет.
-            if(target&&(h.walkOff||0)<desiredOff)h.walkOff=Math.min(desiredOff,(h.walkOff||0)+WALK*k*dt);
-            h.x=Math.min(h.home+(h.walkOff||0),safeFrontX);
-            if(target){const limit=target.x-(halves+4*k);if(h.x>limit)h.x=limit}
-            reach=bodyGap+lane+6*k;
-          }else{const rightInset=modelHalf(hd,"hero")+10*k;h.x=Math.min(h.home+(h.walkOff||0),bx.W-rightInset,bx.W*(bx.W<700?.58:.68))}
+            const safeFrontX=target&&bx.visibleEnemy(target)?bx.W-rightInset:Math.min(bx.W-rightInset,bx.W*(bx.W<700?.58:.68));
+            const desiredX=target?Math.min(target.x-bodyGap-lane,safeFrontX):h.home;
+            const destination=U.clamp(desiredX,modelHalf(hd,"hero")+8*k,bx.W-rightInset);
+            h.x=moveTo(h.x,destination,WALK*(target?1:1.8)*k);
+            h.walkOff=h.x-h.home;
+            h.laneY=moveTo(h.laneY||0,target?-i*14*k:0,80*k);
+            reach=bodyGap+6*k;
+          }else{const rightInset=modelHalf(hd,"hero")+10*k;h.x=moveTo(h.x,Math.min(h.home,bx.W-rightInset),WALK*k);h.walkOff=h.x-h.home;h.laneY=moveTo(h.laneY||0,0,80*k)}
           h.cool-=dt;
-          if(h.cool<=0&&target){
+          if(h.cool<=0&&target&&bx.visibleEnemy(target)){
             h.sk.sharp=(h.sk.sharp||0)+1;
             const sharpCrit=hd.id==="archer"&&h.sk.sharp>=3;
             if(sharpCrit)h.sk.sharp=0;
@@ -203,7 +201,7 @@
     kill(m){const S=T.S;m.dead=true;m.deathT=.25;const bounty=Math.ceil(T.waves.enemyGold(S.wave,m.boss,m.def)*(m.elite?(BAL.elite.goldMult||1):1));T.econ.addGold(bounty,{x:m.x,y:gy()-24});bx.burst(m.x,gy()-18*K(),m.boss?"#ff4d62":m.def.color||"#78ff7a",m.boss?30:10,m.boss?150:100);bx.coins(m.x,gy()-24,3);E.emit("sfx","coin");S.stats.kills++;if(!m.summoned)B.waveKills++;T.progression.awardKill(S.wave,m.boss);T.items.maybeDrop(S.wave,m.boss,m.x,gy()-30,m.def.name);if(m.boss){S.stats.bosses++;if(Math.random()<BAL.divine.bossGemChance){S.gems++;E.emit("toast",{msg:"💎 Босс оставил алмаз!",type:"success"});T.save()} B.boss=null;bx.banner("БОСС ПОВЕРЖЕН!","gold");bx.shake(6,.42);E.emit("sfx","bossdie");if(S.wave===T.waves.victoryWave()&&!S.victory){S.victory=true;T.save();E.emit("victory")}}},
     clearWave(){const S=T.S,w=S.wave,bonus=Math.ceil(T.waves.enemyGold(w,false,{goldMult:1})*(BAL.economy.waveBonusMult+B.waveTotal*.3)*(B.bossWave?2:1));T.econ.addGold(bonus,{x:bx.W/2,y:bx.H/2});E.emit("sfx","wave");S.maxWave=Math.max(S.maxWave,w+1);B.next=S.settings.auto?w+1:w;B.state="inter";B.t=INTER},
     retreat(msg,bannerTxt){const S=T.S,back=T.waves.retreatWave(S.wave);E.emit("sfx","fail");E.emit("hurt");bx.banner(bannerTxt,"boss");E.emit("toast",{msg:msg+" Отступление на волну "+back+".",type:"danger"});B.advance=0;for(const hd of C.heroes){const hs=S.heroes[hd.id],h=B.hs[hd.id];if(!hs?.rec||!T.inParty(hd.id))continue;const wasDead=h.dead;const st=T.derived.heroStats(hd.id);h.maxHp=st.maxHp;h.hp=st.maxHp;h.dead=false;h.deadAge=0;h.deadX=null;h.walkOff=wasDead?0:(h.walkOff||0);h.x=h.home+h.walkOff;h.buffs={};h.castT=0}B.fx=[];B.monsters=[];B.projs=[];B.beams=[];B.boss=null;B.state="inter";B.t=2;B.next=back},
-    resetVisuals(){B.fx=[];B.monsters=[];B.projs=[];B.parts=[];B.texts=[];B.beams=[];B.boss=null;B.travel=0;B.cameraMoving=false;B.combatUntil=0;B.state="inter";B.t=.5;B.next=1;B.advance=0;for(const hd of C.heroes){const h=B.hs[hd.id];h.hp=0;h.maxHp=0;h.dead=false;h.deadAge=0;h.deadX=null;h.walkOff=0;h.buffs={};h.castT=0;h.levelUpT=0}},
+    resetVisuals(){B.fx=[];B.monsters=[];B.projs=[];B.parts=[];B.texts=[];B.beams=[];B.boss=null;B.travel=0;B.cameraMoving=false;B.combatUntil=0;B.state="inter";B.t=.5;B.next=1;B.advance=0;for(const hd of C.heroes){const h=B.hs[hd.id];h.hp=0;h.maxHp=0;h.dead=false;h.deadAge=0;h.deadX=null;h.walkOff=0;h.buffs={};h.castT=0;h.levelUpT=0;h.laneY=0}},
     render(){ctx.setTransform(bx.dpr,0,0,bx.dpr,0,0);ctx.clearRect(0,0,bx.W,bx.H);
       const k=K(),G=gy(),z=T.waves.zoneFor(T.S.wave).zone,bgImg=bx.zoneBg(z);
       if(bgImg){

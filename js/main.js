@@ -3,6 +3,7 @@
         T.load();
         T.battle.init();
         T.ui.init();
+        if(T.balanceUpdated)T.events.emit("toast",{msg:"Баланс обновлён: уровни пересчитаны по накопленному опыту. Копия прежнего сохранения доступна в 💾.",type:"info"});
         T.items.sweepAutoSell();
         T.battle.resize();
         T.battle.startWave(T.S.wave,{silent:true});
