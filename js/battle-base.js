@@ -35,7 +35,7 @@
     for(let i=0;i<3;i++){const a=U.rand(-0.8,0.8);B.parts.push({x:x+Math.cos(a)*r*dir*0.8,y:y+Math.sin(a)*r*0.8,vx:U.rand(-40,40)+dir*60,vy:U.rand(-60,20),g:220,life:U.rand(.18,.32),max:.32,color:i%2?"#ffffff":color,s:U.rand(1.5,2.5)})}
     if(B.parts.length>460)B.parts.splice(0,B.parts.length-460);
   };
-  bx.shadow=(x,y,w)=>{ctx.save();ctx.fillStyle="rgba(0,0,0,.38)";ctx.beginPath();ctx.ellipse(x,y,Math.max(6,w),Math.max(3,w*.22),0,0,6.28);ctx.fill();ctx.restore()};
+  bx.shadow=(x,y,w)=>{ctx.save();ctx.translate(x,y);ctx.scale(Math.max(6,w),Math.max(3,w*.2));const shade=ctx.createRadialGradient(0,0,.08,0,0,1);shade.addColorStop(0,"rgba(8,7,12,.52)");shade.addColorStop(.45,"rgba(8,7,12,.28)");shade.addColorStop(1,"rgba(8,7,12,0)");ctx.fillStyle=shade;ctx.beginPath();ctx.arc(0,0,1,0,Math.PI*2);ctx.fill();ctx.restore()};
   bx.roundRect=(x,y,w,h,r)=>{r=Math.min(r,w/2,h/2);ctx.beginPath();ctx.moveTo(x+r,y);ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath()};
   bx.hpBar=(x,y,w,pct,boss)=>{const h=boss?8:5;
     ctx.save();
@@ -52,8 +52,8 @@
   bx.castBubble=(x,y,icon,t)=>{const a=U.clamp(t/0.35,0,1);const pop=1+0.25*Math.max(0,(t-0.75)/0.25);
     ctx.save();ctx.globalAlpha=a;ctx.translate(x,y);ctx.scale(pop,pop);
     ctx.fillStyle="rgba(18,12,28,.9)";ctx.beginPath();ctx.arc(0,0,9.5,0,6.28);ctx.fill();
-    ctx.strokeStyle="rgba(255,216,102,.9)";ctx.lineWidth=1.5;ctx.shadowColor="rgba(255,216,102,.8)";ctx.shadowBlur=9;ctx.beginPath();ctx.arc(0,0,9.5,0,6.28);ctx.stroke();ctx.shadowBlur=0;
-    ctx.fillStyle="#ffd866";ctx.font="bold 10px sans-serif";ctx.textAlign="center";ctx.textBaseline="middle";ctx.fillText(icon,0,0.5);
+    ctx.strokeStyle="rgba(224,197,139,.85)";ctx.lineWidth=1.2;ctx.beginPath();ctx.arc(0,0,8.5,0,6.28);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(0,-5);ctx.lineTo(4,0);ctx.lineTo(0,5);ctx.lineTo(-4,0);ctx.closePath();ctx.stroke();ctx.fillStyle="#dfc58d";ctx.fillRect(-1,-1,2,2);
     ctx.textBaseline="alphabetic";ctx.restore()};
   // Ranged heroes can engage any living enemy visible on the arena, regardless of canvas width.
   bx.visibleEnemy=m=>!!m&&!m.dead&&m.x>=0&&m.x<=bx.W-4*bx.K();

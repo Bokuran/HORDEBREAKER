@@ -263,7 +263,8 @@ TBH.config.levels=[
     "stars": true,
     "musicRoot": 98,
     "bg": {
-      "src": "assets/zones/campaign/elfcity.svg"
+      "src": "assets/zones/campaign/elfcity-v56.webp",
+      "fb": { "src": "assets/zones/campaign/elfcity.svg" }
     },
     "terrain": "elfcity"
   },
@@ -294,7 +295,8 @@ TBH.config.levels=[
     "stars": false,
     "musicRoot": 130.8,
     "bg": {
-      "src": "assets/zones/campaign/deepwood.svg"
+      "src": "assets/zones/campaign/deepwood-v56.webp",
+      "fb": { "src": "assets/zones/campaign/deepwood.svg" }
     },
     "terrain": "darkwood"
   },
@@ -325,7 +327,8 @@ TBH.config.levels=[
     "stars": false,
     "musicRoot": 87.3,
     "bg": {
-      "src": "assets/zones/campaign/highlands.svg"
+      "src": "assets/zones/campaign/highlands-v56.webp",
+      "fb": { "src": "assets/zones/campaign/highlands.svg" }
     },
     "terrain": "highland"
   },
@@ -356,7 +359,8 @@ TBH.config.levels=[
     "stars": false,
     "musicRoot": 103.8,
     "bg": {
-      "src": "assets/zones/campaign/dwarf.svg"
+      "src": "assets/zones/campaign/dwarf-v56.webp",
+      "fb": { "src": "assets/zones/campaign/dwarf.svg" }
     },
     "terrain": "dwarf"
   },
@@ -449,7 +453,8 @@ TBH.config.levels=[
     "stars": false,
     "musicRoot": 98,
     "bg": {
-      "src": "assets/zones/campaign/marsh.svg"
+      "src": "assets/zones/campaign/marsh-v56.webp",
+      "fb": { "src": "assets/zones/campaign/marsh.svg" }
     },
     "terrain": "swamp"
   },
@@ -511,7 +516,8 @@ TBH.config.levels=[
     "stars": false,
     "musicRoot": 87.3,
     "bg": {
-      "src": "assets/zones/campaign/ruins.svg"
+      "src": "assets/zones/campaign/ruins-v56.webp",
+      "fb": { "src": "assets/zones/campaign/ruins.svg" }
     },
     "terrain": "ruins"
   },
@@ -573,7 +579,8 @@ TBH.config.levels=[
     "stars": false,
     "musicRoot": 92,
     "bg": {
-      "src": "assets/zones/campaign/hellcanyon.svg"
+      "src": "assets/zones/campaign/hellcanyon-v56.webp",
+      "fb": { "src": "assets/zones/campaign/hellcanyon.svg" }
     },
     "terrain": "canyon"
   },
@@ -604,7 +611,8 @@ TBH.config.levels=[
     "stars": false,
     "musicRoot": 110,
     "bg": {
-      "src": "assets/zones/campaign/fortress.svg"
+      "src": "assets/zones/campaign/fortress-v56.webp",
+      "fb": { "src": "assets/zones/campaign/fortress.svg" }
     },
     "terrain": "fortress"
   },

@@ -1,0 +1,35 @@
+/* Unified presentation: painted world, antique gold, restrained magical accents. */
+:root{--green:#8cc995;--cyan:#87c4d2;--red:#e87880;--violet:#b89aca;--gold2:#ead399;--faint:#9d8da9;--mono:"Lato","Segoe UI",sans-serif}
+.scan{display:none}
+.gameIcon{width:1.15em;height:1.15em;display:inline-block;vertical-align:-.16em;flex:none;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.mobileTabs button{display:flex;align-items:center;justify-content:center;gap:7px}
+.mobileTabs .gameIcon{width:18px;height:18px}
+.res{font-variant-numeric:tabular-nums}.res:before{display:none}
+.stageDot.current,.mapStage.current{box-shadow:0 0 8px #8cc99545}
+.hp i{background:linear-gradient(90deg,#528e68,#aed09a)}
+.banner{font-family:"Lato","Segoe UI",sans-serif;letter-spacing:2px;text-shadow:0 2px 5px #0a0810}
+.heroRosterIntro{display:block!important;padding:10px 12px!important}
+.heroRosterIntro b{display:block;margin-bottom:4px}.heroRosterIntro span{display:block;line-height:1.4}
+#itemList>.itemCard{display:grid;grid-template-columns:58px minmax(0,1fr);gap:10px;align-items:start}
+#itemList>.itemCard .itemInfo{min-width:0;align-self:center}
+#itemList>.itemCard .itemStats{display:flex;flex-direction:column;gap:4px;line-height:1.4}
+#itemList>.itemCard .itemStats span{white-space:normal;overflow-wrap:anywhere}
+#itemList>.itemCard .itemActions{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;width:100%;min-width:0}
+#itemList>.itemCard .itemActions select{grid-column:1/-1;width:100%;min-width:0;min-height:34px}
+#itemList>.itemCard .itemActions button{min-width:0;white-space:normal;line-height:1.3;padding:7px 5px}
+#itemList>.itemCard .replaceHint,#itemList>.itemCard .noFit{grid-column:1/-1}
+.itemCard.divineItem .itemIcon:before,.heroGearIcon.divine:before{display:none}
+.itemCard.divineItem .itemIcon{border:0!important;background:transparent!important;box-shadow:none!important}
+.itemCard.divineItem .itemIcon .iIcon,.itemCard.divineItem .divineGeneratedIcon,.heroGearIcon.divine .divineGeneratedIcon{filter:drop-shadow(0 0 3px #ddbd874d)}
+.newDivineArt{background:none;filter:drop-shadow(0 0 3px #ddbd874d)}
+.itemCard.divineItem:before{opacity:.35}
+.itemCard.divineItem .itemInfo>b{color:#e4bd83!important}
+.heroGearIcon.divine{border-color:#c5a16c!important;box-shadow:none;background:radial-gradient(circle,#b59a6320,transparent 75%)}
+.itemCard .itemIcon,.heroTilePortrait{background-color:#19151e}
+.heroDossierGearGrid .heroGearStats span{white-space:normal;overflow-wrap:anywhere}
+button:disabled{filter:saturate(.35)}
+@media(max-width:560px){
+ .heroRosterIntro{padding:8px 10px!important}.heroRosterIntro b{font-size:10px!important}.heroRosterIntro span{font-size:11px!important}
+ .mobileTabs button{gap:4px}.mobileTabs .gameIcon{width:15px;height:15px}
+ #itemList>.itemCard .itemActions{grid-template-columns:repeat(3,minmax(0,1fr))}
+}

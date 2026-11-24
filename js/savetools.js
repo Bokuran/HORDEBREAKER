@@ -191,7 +191,7 @@
   }
 
   const tc=document.querySelector(".topControls");
-  if(tc&&!document.getElementById("saveBtn")){const b=document.createElement("button");b.className="iconBtn";b.id="saveBtn";b.title="Сохранения и перенос";b.setAttribute("aria-label","Сохранения и перенос");b.textContent="💾";tc.insertBefore(b,document.getElementById("helpBtn")||null);b.onclick=open}
+  if(tc&&!document.getElementById("saveBtn")){const b=document.createElement("button");b.className="iconBtn";b.id="saveBtn";b.title="Сохранения и перенос";b.setAttribute("aria-label","Сохранения и перенос");b.innerHTML=T.uiIcon("scroll");tc.insertBefore(b,document.getElementById("helpBtn")||null);b.onclick=open}
   document.addEventListener("keydown",e=>{
     if(!root.classList.contains("on"))return;
     if(e.key==="Escape"){e.preventDefault();close();return}

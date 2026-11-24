@@ -450,7 +450,9 @@
     "boss": true,
     "mechanic": "mountains_champion",
     "sprite": {
-      "src": "assets/characters/campaign/mountains_champion.svg",
+      "src": "assets/characters/campaign/mountains_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/mountains_champion.svg" },
       "region": [
         0,
         0,
@@ -543,7 +545,9 @@
     "boss": true,
     "mechanic": "peaks_champion",
     "sprite": {
-      "src": "assets/characters/campaign/peaks_champion.svg",
+      "src": "assets/characters/campaign/peaks_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/peaks_champion.svg" },
       "region": [
         0,
         0,
@@ -588,7 +592,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/elfwood_a.svg",
+      "src": "assets/characters/campaign/elfwood_a-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/elfwood_a.svg" },
       "region": [
         0,
         0,
@@ -608,7 +614,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/elfwood_b.svg",
+      "src": "assets/characters/campaign/elfwood_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/elfwood_b.svg" },
       "region": [
         0,
         0,
@@ -678,7 +686,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/elfcity_a.svg",
+      "src": "assets/characters/campaign/elfcity_a-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/elfcity_a.svg" },
       "region": [
         0,
         0,
@@ -698,7 +708,9 @@
     "goldMult": 1,
     "flying": true,
     "sprite": {
-      "src": "assets/characters/campaign/elfcity_b.svg",
+      "src": "assets/characters/campaign/elfcity_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/elfcity_b.svg" },
       "region": [
         0,
         0,
@@ -720,7 +732,9 @@
     "boss": true,
     "mechanic": "elfcity_champion",
     "sprite": {
-      "src": "assets/characters/campaign/elfcity_champion.svg",
+      "src": "assets/characters/campaign/elfcity_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/elfcity_champion.svg" },
       "region": [
         0,
         0,
@@ -742,7 +756,9 @@
     "boss": true,
     "mechanic": "elfcity_lord",
     "sprite": {
-      "src": "assets/characters/campaign/elfcity_lord.svg",
+      "src": "assets/characters/campaign/elfcity_lord-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/elfcity_lord.svg" },
       "region": [
         0,
         0,
@@ -808,7 +824,9 @@
     "boss": true,
     "mechanic": "deepwood_champion",
     "sprite": {
-      "src": "assets/characters/campaign/deepwood_champion.svg",
+      "src": "assets/characters/campaign/deepwood_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/deepwood_champion.svg" },
       "region": [
         0,
         0,
@@ -830,7 +848,9 @@
     "boss": true,
     "mechanic": "deepwood_lord",
     "sprite": {
-      "src": "assets/characters/campaign/deepwood_lord.svg",
+      "src": "assets/characters/campaign/deepwood_lord-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/deepwood_lord.svg" },
       "region": [
         0,
         0,
@@ -942,7 +962,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/dwarf_a.svg",
+      "src": "assets/characters/campaign/dwarf_a-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/dwarf_a.svg" },
       "region": [
         0,
         0,
@@ -962,7 +984,9 @@
     "goldMult": 1.18,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/dwarf_b.svg",
+      "src": "assets/characters/campaign/dwarf_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/dwarf_b.svg" },
       "region": [
         0,
         0,
@@ -984,7 +1008,9 @@
     "boss": true,
     "mechanic": "dwarf_champion",
     "sprite": {
-      "src": "assets/characters/campaign/dwarf_champion.svg",
+      "src": "assets/characters/campaign/dwarf_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/dwarf_champion.svg" },
       "region": [
         0,
         0,
@@ -1006,7 +1032,9 @@
     "boss": true,
     "mechanic": "dwarf_lord",
     "sprite": {
-      "src": "assets/characters/campaign/dwarf_lord.svg",
+      "src": "assets/characters/campaign/dwarf_lord-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/dwarf_lord.svg" },
       "region": [
         0,
         0,
@@ -1026,7 +1054,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/mines_a.svg",
+      "src": "assets/characters/campaign/mines_a-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/mines_a.svg" },
       "region": [
         0,
         0,
@@ -1046,7 +1076,9 @@
     "goldMult": 1,
     "flying": true,
     "sprite": {
-      "src": "assets/characters/campaign/mines_b.svg",
+      "src": "assets/characters/campaign/mines_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/mines_b.svg" },
       "region": [
         0,
         0,
@@ -1068,7 +1100,9 @@
     "boss": true,
     "mechanic": "mines_champion",
     "sprite": {
-      "src": "assets/characters/campaign/mines_champion.svg",
+      "src": "assets/characters/campaign/mines_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/mines_champion.svg" },
       "region": [
         0,
         0,
@@ -1090,7 +1124,9 @@
     "boss": true,
     "mechanic": "mines_lord",
     "sprite": {
-      "src": "assets/characters/campaign/mines_lord.svg",
+      "src": "assets/characters/campaign/mines_lord-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/mines_lord.svg" },
       "region": [
         0,
         0,
@@ -1132,7 +1168,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/crystal_b.svg",
+      "src": "assets/characters/campaign/crystal_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/crystal_b.svg" },
       "region": [
         0,
         0,
@@ -1154,7 +1192,9 @@
     "boss": true,
     "mechanic": "crystal_champion",
     "sprite": {
-      "src": "assets/characters/campaign/crystal_champion.svg",
+      "src": "assets/characters/campaign/crystal_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/crystal_champion.svg" },
       "region": [
         0,
         0,
@@ -1176,7 +1216,9 @@
     "boss": true,
     "mechanic": "crystal_lord",
     "sprite": {
-      "src": "assets/characters/campaign/crystal_lord.svg",
+      "src": "assets/characters/campaign/crystal_lord-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/crystal_lord.svg" },
       "region": [
         0,
         0,
@@ -1196,7 +1238,9 @@
     "goldMult": 1,
     "flying": true,
     "sprite": {
-      "src": "assets/characters/campaign/marsh_a.svg",
+      "src": "assets/characters/campaign/marsh_a-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/marsh_a.svg" },
       "region": [
         0,
         0,
@@ -1216,7 +1260,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/marsh_b.svg",
+      "src": "assets/characters/campaign/marsh_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/marsh_b.svg" },
       "region": [
         0,
         0,
@@ -1238,7 +1284,9 @@
     "boss": true,
     "mechanic": "marsh_champion",
     "sprite": {
-      "src": "assets/characters/campaign/marsh_champion.svg",
+      "src": "assets/characters/campaign/marsh_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/marsh_champion.svg" },
       "region": [
         0,
         0,
@@ -1282,7 +1330,9 @@
     "goldMult": 1,
     "flying": true,
     "sprite": {
-      "src": "assets/characters/campaign/cursed_a.svg",
+      "src": "assets/characters/campaign/cursed_a-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/cursed_a.svg" },
       "region": [
         0,
         0,
@@ -1302,7 +1352,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/cursed_b.svg",
+      "src": "assets/characters/campaign/cursed_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/cursed_b.svg" },
       "region": [
         0,
         0,
@@ -1324,7 +1376,9 @@
     "boss": true,
     "mechanic": "cursed_champion",
     "sprite": {
-      "src": "assets/characters/campaign/cursed_champion.svg",
+      "src": "assets/characters/campaign/cursed_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/cursed_champion.svg" },
       "region": [
         0,
         0,
@@ -1346,7 +1400,9 @@
     "boss": true,
     "mechanic": "cursed_lord",
     "sprite": {
-      "src": "assets/characters/campaign/cursed_lord.svg",
+      "src": "assets/characters/campaign/cursed_lord-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/cursed_lord.svg" },
       "region": [
         0,
         0,
@@ -1366,7 +1422,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/ruins_a.svg",
+      "src": "assets/characters/campaign/ruins_a-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/ruins_a.svg" },
       "region": [
         0,
         0,
@@ -1386,7 +1444,9 @@
     "goldMult": 1,
     "flying": true,
     "sprite": {
-      "src": "assets/characters/campaign/ruins_b.svg",
+      "src": "assets/characters/campaign/ruins_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/ruins_b.svg" },
       "region": [
         0,
         0,
@@ -1408,7 +1468,9 @@
     "boss": true,
     "mechanic": "ruins_champion",
     "sprite": {
-      "src": "assets/characters/campaign/ruins_champion.svg",
+      "src": "assets/characters/campaign/ruins_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/ruins_champion.svg" },
       "region": [
         0,
         0,
@@ -1430,7 +1492,9 @@
     "boss": true,
     "mechanic": "ruins_lord",
     "sprite": {
-      "src": "assets/characters/campaign/ruins_lord.svg",
+      "src": "assets/characters/campaign/ruins_lord-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/ruins_lord.svg" },
       "region": [
         0,
         0,
@@ -1450,7 +1514,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/volcano_a.svg",
+      "src": "assets/characters/campaign/volcano_a-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/volcano_a.svg" },
       "region": [
         0,
         0,
@@ -1470,7 +1536,9 @@
     "goldMult": 1.18,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/volcano_b.svg",
+      "src": "assets/characters/campaign/volcano_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/volcano_b.svg" },
       "region": [
         0,
         0,
@@ -1492,7 +1560,9 @@
     "boss": true,
     "mechanic": "volcano_champion",
     "sprite": {
-      "src": "assets/characters/campaign/volcano_champion.svg",
+      "src": "assets/characters/campaign/volcano_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/volcano_champion.svg" },
       "region": [
         0,
         0,
@@ -1514,7 +1584,9 @@
     "boss": true,
     "mechanic": "volcano_lord",
     "sprite": {
-      "src": "assets/characters/campaign/volcano_lord.svg",
+      "src": "assets/characters/campaign/volcano_lord-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/volcano_lord.svg" },
       "region": [
         0,
         0,
@@ -1534,7 +1606,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/hellcanyon_a.svg",
+      "src": "assets/characters/campaign/hellcanyon_a-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/hellcanyon_a.svg" },
       "region": [
         0,
         0,
@@ -1554,7 +1628,9 @@
     "goldMult": 1,
     "flying": true,
     "sprite": {
-      "src": "assets/characters/campaign/hellcanyon_b.svg",
+      "src": "assets/characters/campaign/hellcanyon_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/hellcanyon_b.svg" },
       "region": [
         0,
         0,
@@ -1576,7 +1652,9 @@
     "boss": true,
     "mechanic": "hellcanyon_champion",
     "sprite": {
-      "src": "assets/characters/campaign/hellcanyon_champion.svg",
+      "src": "assets/characters/campaign/hellcanyon_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/hellcanyon_champion.svg" },
       "region": [
         0,
         0,
@@ -1598,7 +1676,9 @@
     "boss": true,
     "mechanic": "hellcanyon_lord",
     "sprite": {
-      "src": "assets/characters/campaign/hellcanyon_lord.svg",
+      "src": "assets/characters/campaign/hellcanyon_lord-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/hellcanyon_lord.svg" },
       "region": [
         0,
         0,
@@ -1618,7 +1698,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/fortress_a.svg",
+      "src": "assets/characters/campaign/fortress_a-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/fortress_a.svg" },
       "region": [
         0,
         0,
@@ -1638,7 +1720,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/fortress_b.svg",
+      "src": "assets/characters/campaign/fortress_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/fortress_b.svg" },
       "region": [
         0,
         0,
@@ -1660,7 +1744,9 @@
     "boss": true,
     "mechanic": "fortress_champion",
     "sprite": {
-      "src": "assets/characters/campaign/fortress_champion.svg",
+      "src": "assets/characters/campaign/fortress_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/fortress_champion.svg" },
       "region": [
         0,
         0,
@@ -1682,7 +1768,9 @@
     "boss": true,
     "mechanic": "fortress_lord",
     "sprite": {
-      "src": "assets/characters/campaign/fortress_lord.svg",
+      "src": "assets/characters/campaign/fortress_lord-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/fortress_lord.svg" },
       "region": [
         0,
         0,
@@ -1702,7 +1790,9 @@
     "goldMult": 1,
     "flying": false,
     "sprite": {
-      "src": "assets/characters/campaign/citadel_a.svg",
+      "src": "assets/characters/campaign/citadel_a-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/citadel_a.svg" },
       "region": [
         0,
         0,
@@ -1722,7 +1812,9 @@
     "goldMult": 1,
     "flying": true,
     "sprite": {
-      "src": "assets/characters/campaign/citadel_b.svg",
+      "src": "assets/characters/campaign/citadel_b-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/citadel_b.svg" },
       "region": [
         0,
         0,
@@ -1744,7 +1836,9 @@
     "boss": true,
     "mechanic": "citadel_champion",
     "sprite": {
-      "src": "assets/characters/campaign/citadel_champion.svg",
+      "src": "assets/characters/campaign/citadel_champion-v56.webp",
+      "face": "left",
+      "fb": { "src": "assets/characters/campaign/citadel_champion.svg" },
       "region": [
         0,
         0,

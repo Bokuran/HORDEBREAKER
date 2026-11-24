@@ -81,6 +81,14 @@ const expectedImages = new Set([
 for(const file of ["assets/zones/campaign/city.webp","assets/zones/campaign/gate.webp","assets/zones/campaign/waste.webp","assets/zones/campaign/mountains.webp","assets/zones/campaign/peaks.webp","assets/zones/campaign/elfwood.webp","assets/characters/campaign/city_a.webp","assets/characters/campaign/city_b.webp","assets/characters/campaign/city_champion.webp","assets/characters/campaign/city_lord.webp","assets/characters/campaign/gate_a.webp","assets/characters/campaign/gate_b.webp","assets/characters/campaign/gate_champion.webp","assets/characters/campaign/gate_lord.webp","assets/characters/campaign/forest_b.webp","assets/characters/campaign/forest_champion.webp","assets/characters/campaign/waste_a.webp","assets/characters/campaign/waste_b.webp","assets/characters/campaign/waste_champion.webp","assets/characters/campaign/waste_lord.webp","assets/characters/campaign/mountains_a.webp","assets/characters/campaign/mountains_b.webp","assets/characters/campaign/mountains_lord.webp","assets/characters/campaign/peaks_a.webp","assets/characters/campaign/peaks_b.webp","assets/characters/campaign/peaks_lord.webp","assets/characters/campaign/elfwood_champion.webp","assets/characters/campaign/elfwood_lord.webp"])expectedImages.add(file);
 for(const file of ["assets/characters/campaign/forest_a.webp","assets/characters/campaign/forest_lord.webp","assets/characters/campaign/highlands_lord.webp","assets/characters/campaign/deepwood_a.webp","assets/items/bow.webp","assets/items/dagger.webp","assets/items/mace.webp","assets/items/fists.webp","assets/items/wand.webp","assets/items/sickle.webp","assets/items/robe.webp","assets/items/coat.webp"])expectedImages.add(file);
 for(const src of ["assets/characters/campaign/highlands_a.webp","assets/characters/campaign/highlands_b.webp","assets/characters/campaign/highlands_champion.webp","assets/characters/campaign/deepwood_b.webp","assets/characters/campaign/marsh_lord.webp","assets/characters/campaign/crystal_a.webp","assets/characters/campaign/citadel_lord.webp"])expectedImages.add(src);
+const artV56=JSON.parse(fs.readFileSync(path.join(root,'docs/art-v56-prompts.json'),'utf8')).jobs;
+assert.equal(artV56.filter(j=>j.type==='enemy').length,47);
+assert.equal(artV56.filter(j=>j.type==='background').length,8);
+for(const j of artV56){
+  const src=`assets/${j.type==='enemy'?'characters':'zones'}/campaign/${j.id}-v56.webp`;
+  expectedImages.add(src);
+  assert.equal(j.type==='enemy'?c.monsters[j.id].sprite.src:c.levels.find(z=>z.id===j.id).bg.src,src,'New art must be the primary source: '+j.id);
+}
 assert.deepEqual(new Set(imageFiles), expectedImages, 'Only the new, referenced WebP game art should be shipped');
 assert.ok(!fs.existsSync(path.join(root, 'assets/zones/source')), 'Unused source crops should not be shipped');
 for (const legacy of ['assets/bg_atlas.png','assets/bg_atlas.webp','assets/boss_atlas.png','assets/boss_atlas.webp','assets/expansion.png','assets/expansion.webp','assets/heroes.png']) {
@@ -124,7 +132,7 @@ assert.match(index, /id="bossFill"/, 'Boss HP bar missing');
 assert.match(index, /type="image\/webp" href="assets\/logo\.webp/, 'WebP favicon MIME type mismatch');
 
 // New progression and interface regressions.
-assert.match(index, /data-tab=\"heroes\"[^>]*>⚔ Герои/, 'Heroes navigation tab missing');
+assert.match(index, /<button[^>]*data-tab="heroes"[^>]*>(?:(?!<\/button>)[\s\S])*Герои\s*<\/button>/, 'Heroes navigation tab missing');
 assert.match(index, /АТЛАС РАЗВИТИЯ/, 'Camp atlas missing');
 assert.match(index, /ОБМЕННИК БОЖЕСТВЕННЫХ РЕЛИКВИЙ/, 'Divine exchange missing');
 const styleSource = fs.readFileSync(path.join(root, 'css', 'style.css'), 'utf8');
@@ -1031,14 +1039,14 @@ console.log('Painted campaign art and original location crests: OK.');
 }
 console.log('Wide-screen ranged attacks, healer priority, off-screen guard and high-speed projectile impact: OK.');
 
-// The final v47 campaign vector pass covers every previously unfinished enemy and background.
+// Keep the authored v47 vector fallbacks valid behind the painted campaign assets.
 {
   const updatedEnemies=["forest_a","forest_lord","mountains_champion","peaks_champion","elfwood_a","elfwood_b","deepwood_a","deepwood_b","deepwood_champion","deepwood_lord","dwarf_a","dwarf_b","dwarf_champion","dwarf_lord","mines_a","mines_b","mines_champion","mines_lord","crystal_a","crystal_b","crystal_champion","crystal_lord","marsh_a","marsh_b","marsh_champion","marsh_lord","cursed_a","cursed_b","cursed_champion","cursed_lord","ruins_a","ruins_b","ruins_champion","ruins_lord","volcano_a","volcano_b","volcano_champion","volcano_lord","hellcanyon_a","hellcanyon_b","hellcanyon_champion","hellcanyon_lord","fortress_a","fortress_b","fortress_champion","fortress_lord","citadel_a","citadel_b","citadel_champion","citadel_lord"];
   const updatedZones=["elfcity","dwarf","marsh","ruins","hellcanyon","fortress"];
   const uniqueArt=new Set();
   for(const id of updatedEnemies){const source=fs.readFileSync(path.join(root,c.monsters[id].sprite.fb?.src||c.monsters[id].sprite.src),'utf8');assert.ok(source.includes('campaign artwork v47 — '+id),id+' must use updated campaign art');assert.ok(source.includes('<title>'+c.monsters[id].name+'</title>'),id+' art must match its character');assert.ok((source.match(/<(?:path|ellipse|circle|polygon|rect)\b/g)||[]).length>=10,id+' needs a fully layered illustration');uniqueArt.add(source);}
   assert.equal(uniqueArt.size,50);
-  for(const id of updatedZones){const z=c.levels.find(z=>z.id===id);const source=fs.readFileSync(path.join(root,z.bg.src),'utf8');assert.ok(source.includes('campaign panorama v47 — '+id),id+' must use its upgraded panorama');assert.match(source,/viewBox="0 0 1600 500"/);}
+  for(const id of updatedZones){const z=c.levels.find(z=>z.id===id);const source=fs.readFileSync(path.join(root,z.bg.fb?.src||z.bg.src),'utf8');assert.ok(source.includes('campaign panorama v47 — '+id),id+' must use its upgraded panorama');assert.match(source,/viewBox="0 0 1600 500"/);}
   assert.equal(new Set(c.levels.flatMap(z=>[...z.monsters,...Object.values(z.bosses)].map(id=>c.monsters[id].sprite.src))).size,80);
 }
 console.log('Campaign art v47: 50 upgraded enemies, six upgraded panoramas, all 80 enemy asset paths distinct.');

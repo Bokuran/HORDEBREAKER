@@ -13,15 +13,13 @@
   };
   const SLOT_ART={weapon:"sword",armor:"shield",talisman:"coin"};
   const iconImg=(art,size)=>`<img class="iIcon" style="width:${size}px;height:${size}px" src="${ICONS[art]||ICONS.coin}?v=50" alt="">`;
-  // The generated 5×2 divine artifact sheet contains sword, axe, bow, staff,
-  // shield / helm, armor, ring, amulet, boots. Pick the nearest matching art.
-  const DIVINE_ART={bow:[2,0],dagger:[0,0],mace:[1,0],fists:[4,0],wand:[3,0],sickle:[1,0],robe:[1,1],coat:[1,1],sword:[0,0],blade:[0,0],axe:[1,0],feather:[2,0],
-    staff:[3,0],shield:[4,0],vest:[1,1],mail:[1,1],plate:[1,1],
-    coin:[2,1],fang:[3,1],seal:[3,1]};
+  // Divine weapons use the atlas only when its silhouette matches the item.
+  // Other types retain their own artwork with the same restrained rarity finish.
+  const DIVINE_ART={sword:[0,0],axe:[1,0],bow:[2,0],staff:[3,0],shield:[4,0],plate:[1,1]};
   const itemIconImg=(it,art,size)=>{
     if(!it||it.rarity!=="divine")return iconImg(art,size);
-    if(["dagger","mace","fists","wand","sickle","robe","coat"].includes(art))return `<span class="newDivineArt">${iconImg(art,size)}</span>`;
-    const [x,y]=DIVINE_ART[art]||[2,1];
+    if(!DIVINE_ART[art])return `<span class="newDivineArt">${iconImg(art,size)}</span>`;
+    const [x,y]=DIVINE_ART[art];
     return `<span class="divineGeneratedIcon" role="img" aria-label="Божественное снаряжение" style="width:${size}px;height:${size}px;--icon-x:${x*25}%;--icon-y:${y*100}%"></span>`;
   };
     (function(){const s=document.createElement("style");s.textContent=`
@@ -68,7 +66,7 @@
       const list=items.map(it=>{const r=T.derived.rarityOf(it),d=T.derived.itemDef(it);return`<div class="offItem"><span>${itemIconImg(it,d.art||SLOT_ART[it.slot],18)}</span><b style="color:${r.color}">${d.name}</b><small>ур.${it.ilvl}</small></div>`}).join("");
       modal({title:"С возвращением, герой!",sub:"ОФЛАЙН-БОЙ",icon:"🌙",html:`<p>Отряд сражался <b>${U.fmtTime(secs)}</b>, пока игра была закрыта.</p><div class="offGold">+🪙 ${U.fmt(gold)}</div><div class="offGems">+💎 ${crystals} алмазов</div>${items.length?`<p><b>Найдено предметов:</b></p>${list}`:"<p>Предметов не найдено.</p>"}<p class="muted">Награда уже зачислена и сохранена.</p>`,buttons:[{label:"Продолжить"}]})
     },
-    setPaused(v){paused=v;refs.pauseOverlay.classList.toggle("on",v);refs.pauseBtn.textContent=v?"▶":"⏸";refs.pauseBtn.classList.toggle("on",v);refs.pauseBtn.setAttribute("aria-pressed",String(v))}
+    setPaused(v){paused=v;refs.pauseOverlay.classList.toggle("on",v);refs.pauseBtn.innerHTML=T.uiIcon(v?"play":"pause");refs.pauseBtn.classList.toggle("on",v);refs.pauseBtn.setAttribute("aria-pressed",String(v))}
   };
   function bindControls(){refs.pauseBtn.onclick=()=>{T.audio.init();T.audio.resume();T.audio.play("click");UI.setPaused(!paused)};refs.speedBtn.onclick=()=>{T.audio.init();T.S.settings.speed=T.S.settings.speed>=3?1:T.S.settings.speed+1;T.save();T.audio.play("click");updateAll()};refs.soundBtn.onclick=()=>{T.audio.init();T.S.settings.muted=!T.S.settings.muted;T.audio.setMuted(T.S.settings.muted);T.save();updateAll()};refs.helpBtn.onclick=()=>{T.audio.init();showHelp()};refs.resetBtn.onclick=()=>{T.audio.init();showReset()};refs.hintClose.onclick=()=>{T.S.hint=false;refs.hint.style.display="none";T.save()};refs.autoBtn.onclick=()=>{T.S.settings.auto=!T.S.settings.auto;T.save();T.audio.play("click");updateAll()};refs.mapBtn.onclick=()=>{T.audio.init();T.audio.play("click");mapCircle=null;showWorldMap()};refs.sellSpare.onclick=()=>{T.audio.init();showSellSpare()};refs.divineBuy.onclick=()=>{T.audio.init();const level=Number(refs.divineLevel.value),cost=T.econ.divineCost(level);
       if(!T.econ.buyDivine(level))toast("Нужно "+cost+" алмазов и свободное место в сумке","info")};
@@ -391,7 +389,7 @@
     refs.autoBtn.classList.toggle("on",S.settings.auto);setText(refs.autoBtn,S.settings.auto?"АВТО ▶":"ФАРМ ∞");
     setText(refs.speedBtn,"×"+S.settings.speed);
     const snd=S.settings.muted?"🔇":"🔊";
-    if(refs.soundBtn.__t!==snd){setText(refs.soundBtn,snd);refs.soundBtn.title=S.settings.muted?"Включить звук (M)":"Выключить звук (M)";refs.soundBtn.setAttribute("aria-pressed",String(!S.settings.muted))}
+    if(refs.soundBtn.__t!==snd){refs.soundBtn.__t=snd;refs.soundBtn.innerHTML=T.uiIcon(S.settings.muted?"muted":"sound");refs.soundBtn.title=S.settings.muted?"Включить звук (M)":"Выключить звук (M)";refs.soundBtn.setAttribute("aria-pressed",String(!S.settings.muted))}
     const bossActive=B.bossWave&&B.boss&&!B.boss.dead;refs.bossBar.classList.toggle("on",bossActive);
     if(bossActive){
       setText(refs.bossName,"👑 "+B.boss.def.name);

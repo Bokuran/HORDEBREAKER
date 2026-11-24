@@ -33,6 +33,10 @@
     const W=bx.W,H=bx.H,k=K(),travel=bx.REDUCED.matches?0:(B.travel||0);
     const id=zone?.id||"forest";
     const palettes={
+      city:["#302a2b","#62584a","#a19378","#d5b889"],gate:["#302a2b","#655447","#9e8b70","#cead7c"],
+      elfcity:["#282a37","#57596a","#a4a9bc","#d4cbed"],dwarf:["#282524","#5a4d3e","#9d8261","#d2ad77"],
+      ruins:["#2c2930","#56505b","#98909e","#c9b9a3"],fortress:["#261e25","#4c3941","#8c686c","#bb8c79"],citadel:["#281c23","#49303a","#8a5c66","#bb807b"],
+      mountains:["#34332e","#665d49","#aaa081","#d6c695"],highlands:["#34332f","#61584c","#a69a83","#cabc94"],
       forest:["#25382f","#443a30","#7d6c50","#91c883"],waste:["#463129","#58402b","#c08a52","#ddab6a"],
       caves:["#29213e","#342b43","#6e6481","#9ea7cb"],peaks:["#273b53","#4c5969","#8496a8","#b7d8ec"],
       castle:["#332335","#483241","#78637a","#d9a19e"],crystal:["#24234b","#33335e","#7472bb","#81e3ec"],
@@ -70,11 +74,11 @@
     // Continuous road is anchored under the heroes' feet and extends beyond the canvas.
     const upper=G-24*k;
     const grad=ctx.createLinearGradient(0,upper,0,H+7);
-    grad.addColorStop(0,shadow);grad.addColorStop(.34,road);grad.addColorStop(1,shadow);
+    grad.addColorStop(0,shadow+"00");grad.addColorStop(.35,road+"70");grad.addColorStop(.75,road+"dc");grad.addColorStop(1,shadow);
     ctx.fillStyle=grad;ctx.beginPath();ctx.moveTo(-10,upper+5);
     ctx.bezierCurveTo(W*.3,upper-4,W*.7,upper-4,W+10,upper+5);
     ctx.lineTo(W+10,H+10);ctx.lineTo(-10,H+10);ctx.closePath();ctx.fill();
-    ctx.strokeStyle=stone;ctx.globalAlpha=.24;ctx.lineWidth=1.2*k;ctx.beginPath();
+    ctx.strokeStyle=stone;ctx.globalAlpha=.04;ctx.lineWidth=1.2*k;ctx.beginPath();
     ctx.moveTo(-5,upper+5);ctx.quadraticCurveTo(W*.5,upper-4,W+5,upper+5);ctx.stroke();
     // Irregular cobblestones and cracks; no bright dashed highway markings.
     // Every position is deterministic, so there is no texture flicker.
@@ -168,8 +172,31 @@
     else if(p.ring){ctx.strokeStyle=p.color;ctx.globalAlpha=a;ctx.lineWidth=2;ctx.beginPath();ctx.arc(p.x,p.y,(1-a)*p.s+4,0,6.28);ctx.stroke();ctx.globalAlpha=1}
     else if(p.coin){ctx.globalAlpha=a;ctx.fillStyle="#ffd866";ctx.beginPath();ctx.arc(p.x,p.y,p.s,0,6.28);ctx.fill();ctx.fillStyle="#fff8d8";ctx.fillRect(p.x-1,p.y-1.5,1.5,1.5);ctx.globalAlpha=1}
     else{ctx.globalAlpha=a;ctx.fillStyle=p.color;ctx.fillRect(p.x-p.s/2,p.y-p.s/2,p.s,p.s);ctx.globalAlpha=1}}};
-  bx.drawBeams=(k,G)=>{for(const b of B.beams){const a=1-b.t/b.dur,x=b.x,g=ctx.createLinearGradient(0,0,0,G);g.addColorStop(0,"rgba(255,255,255,0)");g.addColorStop(.55,b.color+"55");g.addColorStop(1,b.color+"cc");ctx.fillStyle=g;ctx.fillRect(x-13*k,0,26*k,G);ctx.globalAlpha=a;ctx.fillStyle=b.color;ctx.font="bold 18px serif";ctx.textAlign="center";ctx.fillText("🎁",x,G-42*k-b.t*22);ctx.globalAlpha=1}};
-  bx.drawTexts=()=>{ctx.textAlign="center";for(const t of B.texts){ctx.font=`bold ${t.big?14:11}px Courier New`;ctx.globalAlpha=U.clamp(t.life/t.max,0,1);ctx.lineWidth=3;ctx.strokeStyle="rgba(0,0,0,.75)";ctx.strokeText(t.txt,t.x,t.y);ctx.fillStyle=t.color;ctx.fillText(t.txt,t.x,t.y);ctx.globalAlpha=1}};
+  bx.drawBeams=(k,G)=>{for(const b of B.beams){
+    const a=U.clamp(1-b.t/b.dur,0,1),x=b.x,top=G-95*k;
+    ctx.save();ctx.globalAlpha=a*.65;
+    const g=ctx.createLinearGradient(0,top,0,G);g.addColorStop(0,b.color+"00");g.addColorStop(1,b.color+"66");
+    ctx.fillStyle=g;ctx.beginPath();ctx.moveTo(x-2*k,top);ctx.lineTo(x+2*k,top);ctx.lineTo(x+15*k,G);ctx.lineTo(x-15*k,G);ctx.closePath();ctx.fill();
+    ctx.strokeStyle=b.color;ctx.lineWidth=1.2;ctx.beginPath();ctx.ellipse(x,G,17*k,4*k,0,0,Math.PI*2);ctx.stroke();
+    const y=G-24*k-b.t*12;ctx.globalAlpha=a;ctx.fillStyle="#ead399";ctx.beginPath();ctx.moveTo(x,y-6*k);ctx.lineTo(x+4*k,y);ctx.lineTo(x,y+6*k);ctx.lineTo(x-4*k,y);ctx.closePath();ctx.fill();ctx.restore();
+  }};
+  bx.drawTexts=()=>{
+    ctx.save();ctx.textAlign="center";ctx.textBaseline="alphabetic";
+    const labels=[],narrow=bx.W<600,maxWidth=narrow?170:240;
+    for(const t of [...B.texts].reverse()){
+      const label=/[А-Яа-яЁё]/.test(t.txt),txt=label?String(t.txt).replace(/^[^\p{L}\p{N}]+/u,""):t.txt;
+      if(label&&labels.length>=(narrow?3:5))continue;
+      ctx.font=`${label?700:800} ${label?11:(t.big?13:11)}px Lato, sans-serif`;
+      const width=Math.min(maxWidth,ctx.measureText(txt).width),x=U.clamp(t.x,width/2+6,bx.W-width/2-6);
+      let y=t.y-(label?23:0);
+      if(label){while(labels.some(p=>Math.abs(p.x-x)<(p.w+width)/2+6&&Math.abs(p.y-y)<29))y-=29;y=Math.max(18,y);labels.push({x,y,w:width})}
+      ctx.globalAlpha=U.clamp(t.life/t.max,0,1);ctx.lineWidth=3;ctx.strokeStyle="rgba(9,7,13,.9)";ctx.fillStyle=t.color;
+      const words=String(txt).split(" "),lines=[];let line="";
+      for(const word of words){const next=line?line+" "+word:word;if(line&&ctx.measureText(next).width>maxWidth){lines.push(line);line=word}else line=next}lines.push(line);
+      lines.slice(0,2).forEach((s,i)=>{ctx.strokeText(s,x,y+i*13,maxWidth);ctx.fillText(s,x,y+i*13,maxWidth)});
+    }
+    ctx.restore();
+  };
   bx.drawLevelUps=G=>{
     const labels=[],fontSize=bx.W<700?10:13;
     ctx.save();ctx.textAlign="center";ctx.font=`900 ${fontSize}px Courier New`;

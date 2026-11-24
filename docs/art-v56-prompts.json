@@ -1,0 +1,280 @@
+{
+  "generator": "built-in image_gen",
+  "jobs": [
+    {
+      "id": "mountains_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Harpy Matriarch: regal female avian monster, massive ragged russet wings, talons, tarnished bronze feather crown"
+    },
+    {
+      "id": "peaks_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Winter pack alpha: enormous muscular white wolf, frost-encrusted layered fur, jagged ice along spine, scars and pale blue eyes"
+    },
+    {
+      "id": "elfwood_a",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Corrupted forest beast: dark wolf-like quadruped with bark plates, tangled thorn antlers and faint sickly green eyes"
+    },
+    {
+      "id": "elfwood_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Forest exile: lean male elven ambusher in weathered moss-green leather, torn hood, curved short sword, root charms"
+    },
+    {
+      "id": "elfcity_a",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Fallen elven guard: slender warrior in aged silver-blue engraved armor, long spear and oval shield, tattered midnight cloak"
+    },
+    {
+      "id": "elfcity_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Moon spirit: floating female elven apparition, flowing pale blue spectral robes, silver crescent headdress, restrained moonlit mist"
+    },
+    {
+      "id": "elfcity_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Exiled elven warlord: imposing armored male elf with dark violet engraved plate, enormous curved glaive and torn royal cloak, no crown"
+    },
+    {
+      "id": "elfcity_lord",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Corrupted elven high priestess: severe regal woman in layered ivory and purple ritual robes, branching silver headdress and crescent staff, violet corruption"
+    },
+    {
+      "id": "deepwood_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Thorn witch: hunched old forest witch in layered dark moss robes, thorn crown, crooked staff with small violet crystal, bramble roots around hem"
+    },
+    {
+      "id": "deepwood_lord",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Twilight treant: huge ancient gnarled tree giant, twisting roots as feet, hollow glowing violet face, moss and dead branches, imposing broad silhouette"
+    },
+    {
+      "id": "dwarf_a",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Dwarven rune guard: stout bearded dwarf in worn bronze and iron engraved armor, broad shield and rune axe"
+    },
+    {
+      "id": "dwarf_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Mechanical dwarven sentinel: squat clockwork automaton with iron and brass plates, exposed gears and articulated piston legs, single amber lens, heavy fists"
+    },
+    {
+      "id": "dwarf_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Dwarven siege master: scarred stout dwarf engineer, heavy bronze armor, shoulder-mounted mechanical crossbow, oversized siege hammer, heavy leather apron"
+    },
+    {
+      "id": "dwarf_lord",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Dwarven rune smith boss: ancient muscular dwarf with braided white beard, massive engraved anvil hammer, blazing amber runes on dark iron armor, furnace gauntlets"
+    },
+    {
+      "id": "mines_a",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Cave crawler: low six-legged subterranean insect monster with slate carapace, digging claws and broad mandibles, dull mineral deposits"
+    },
+    {
+      "id": "mines_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Mine ghost: spectral dead miner in torn grey-blue clothes, rusted helmet with dim lamp, broken pickaxe, trailing teal ectoplasm, melancholy threatening silhouette"
+    },
+    {
+      "id": "mines_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Ore devourer: massive segmented subterranean worm, coiled compact full body, stone armored rings, radial maw of iron teeth and crystalline ore fragments"
+    },
+    {
+      "id": "mines_lord",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Iron guardian of depths: hulking iron golem of ancient mining machinery, riveted worn armor, brass runes, giant drill forearm and stone-crushing fist"
+    },
+    {
+      "id": "crystal_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Crystal crawler: low many-legged cave reptile with purple translucent crystal plates, faceted spine and long clawed feet"
+    },
+    {
+      "id": "crystal_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Song of crystals: elegant levitating crystalline spirit, feminine silhouette built from amethyst shards, resonating crystal fan around shoulders, pale violet inner light"
+    },
+    {
+      "id": "crystal_lord",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Diamond titan: huge imposing crystalline golem, clear blue diamond armor facets over dark stone core, massive fists, distinctive spiked shoulders"
+    },
+    {
+      "id": "marsh_a",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Swamp ghoul: gaunt hunched undead humanoid, rotting leather and waterlogged cloth, long claws, tangled algae and reeds, pallid green skin"
+    },
+    {
+      "id": "marsh_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Venom toad: massive squat realistic warty swamp toad, moss-green mottled skin, swollen poison glands, amber eyes, strong hind legs"
+    },
+    {
+      "id": "marsh_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Mire witch: ancient swamp hag, ragged ochre and olive robes, reed crown, crooked staff carrying a dim green lantern, muddy roots around feet"
+    },
+    {
+      "id": "cursed_a",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Shadow wraith: tall hovering spectral figure in shredded charcoal hood and robes, indistinct gaunt face with faint violet eyes, flowing wisps"
+    },
+    {
+      "id": "cursed_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Deadwood beast: gaunt undead stag-wolf creature, bark-covered ribs, broken antlers, black fur and dead roots, muted sickly green eyes"
+    },
+    {
+      "id": "cursed_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Prince of the night hunt: aristocratic pale elven hunter in blackened engraved plate and burgundy cloak, antler crown, long hunting spear"
+    },
+    {
+      "id": "cursed_lord",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Lord of cursed roots: towering twisted ancient treant, skull-like face in bark, thorny crown, hollow violet core, huge root claws and twisted legs"
+    },
+    {
+      "id": "ruins_a",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Bone warrior: skeletal soldier with aged iron breastplate, broken bronze shield and chipped sword, scraps of faded royal blue cloth"
+    },
+    {
+      "id": "ruins_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Ash mage: undead sorcerer in layered ash-grey robes, cracked ivory mask, scorched scrolls and staff with a small cold blue flame"
+    },
+    {
+      "id": "ruins_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: King without a throne: imposing undead monarch, broken gold crown, decayed crimson royal cloak over black plate, huge chipped ceremonial sword"
+    },
+    {
+      "id": "ruins_lord",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Lich of ancient dynasty: tall skeletal archmage in ornate deep purple and tarnished gold robes, elaborate bone crown, long staff with violet soul gem"
+    },
+    {
+      "id": "volcano_a",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Flame imp: wiry horned demonic creature, scorched red skin, ember fissures, sharp claws, curved tail and small tattered wings"
+    },
+    {
+      "id": "volcano_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Lava golem: massive basalt humanoid with irregular volcanic rock plates and restrained molten orange cracks, blocky crushing fists"
+    },
+    {
+      "id": "volcano_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Ash dragon: compact full-body ancient winged dragon, charcoal scales dusted with ash, folded ragged wings, ember throat and spiked tail"
+    },
+    {
+      "id": "volcano_lord",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Magma lord: towering horned volcanic demon in obsidian armor, molten orange chest fissures, massive black stone warhammer, burning crown-like horns"
+    },
+    {
+      "id": "hellcanyon_a",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Hellhound: muscular black demonic hound, charred fur, red-orange ember seams, iron collar, long fangs, low stalking pose"
+    },
+    {
+      "id": "hellcanyon_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Winged abyss demon: lean humanoid demon with dark burgundy skin, swept horns, large leathery wings partly folded, hooked claws and spear"
+    },
+    {
+      "id": "hellcanyon_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Executioner of the abyss: huge hooded demonic headsman in black iron and dark red leather, oversized execution axe, chains, faceless mask"
+    },
+    {
+      "id": "hellcanyon_lord",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Soul devourer: tall emaciated spectral demon with elongated horned skull, torn black violet robes, rib cage containing dim violet souls, long claws"
+    },
+    {
+      "id": "fortress_a",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Infernal knight: armored human-shaped warrior in blackened plate with bronze edges, horned closed helmet, broad shield and heavy longsword, dark burgundy cloth"
+    },
+    {
+      "id": "fortress_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Siege demon: broad stocky four-armed demon plated in riveted dark iron, battering-ram horns and brutal stone-breaking fists, restrained embers"
+    },
+    {
+      "id": "fortress_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: General of the Black Army: imposing demonic commander, highly detailed black and antique gold armor, large red cloak, swept horns, massive poleaxe"
+    },
+    {
+      "id": "fortress_lord",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Guardian of Abyss Gates: gigantic iron sentinel, arch-shaped armored shoulders, heavy rune-inscribed black plate, huge gate-key mace and tower shield"
+    },
+    {
+      "id": "citadel_a",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Legion demon: disciplined horned demonic soldier in dark steel and crimson segmented armor, serrated spear and spiked round shield"
+    },
+    {
+      "id": "citadel_b",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: Abyss cultist: sinister hooded ritualist in black and deep burgundy layered robes, masked face, bone talismans, crooked sacrificial staff with violet light"
+    },
+    {
+      "id": "citadel_champion",
+      "type": "enemy",
+      "prompt": "Use case: stylized-concept. Production sprite for HORDEBREAKER 2D side-scrolling dark fantasy RPG. Detailed hand-painted fantasy bestiary art, crisp readable silhouette, realistic anatomy, rich textured materials, aged metal and restrained magical highlights. NOT photorealistic, NOT flat vector, NOT chibi, NOT low-poly. Single isolated whole character in three-quarter SIDE VIEW FACING LEFT. Full body, feet, weapons, horns, tail and wings fully inside image with 8% transparent margins. Compact combat-ready pose. Lighting from upper left, warm restrained highlights and deep shaded volumes. TRUE TRANSPARENT background, no scenery, no ground plane, no cast shadow, no text, no labels, no frame. Must read clearly at 90-110px in-game height. Subject: First Duke of Hell: regal imposing winged archdevil in ornate black and burnished gold armor, tall swept horns, crimson cape, flaming greatsword, noble threatening silhouette"
+    },
+    {
+      "id": "elfcity",
+      "type": "background",
+      "prompt": "Use case: stylized-concept. Production wide horizontal battle panorama for HORDEBREAKER, detailed hand-painted atmospheric dark fantasy matching richly painted Emerald Forest and medieval city backgrounds. Wide landscape 3:1 composition, side-scrolling camera near ground height. Layered atmospheric depth, intricate natural materials, painterly textures, restrained contrast in the middle where sprites fight. Bottom 18% is continuous level walkable ground in side view, empty and unobstructed, no foreground objects blocking actors. No characters, creatures, UI, writing, logos, frames or text. Not vector, not flat geometric, not cartoon, not pixel art, not photorealistic. Scene: An abandoned ancient elven city under cool moonlight, graceful pointed ivory towers, interlaced stone bridges, overgrown terraces, silver blue and muted violet, deep atmospheric perspective"
+    },
+    {
+      "id": "deepwood",
+      "type": "background",
+      "prompt": "Use case: stylized-concept. Production wide horizontal battle panorama for HORDEBREAKER, detailed hand-painted atmospheric dark fantasy matching richly painted Emerald Forest and medieval city backgrounds. Wide landscape 3:1 composition, side-scrolling camera near ground height. Layered atmospheric depth, intricate natural materials, painterly textures, restrained contrast in the middle where sprites fight. Bottom 18% is continuous level walkable ground in side view, empty and unobstructed, no foreground objects blocking actors. No characters, creatures, UI, writing, logos, frames or text. Not vector, not flat geometric, not cartoon, not pixel art, not photorealistic. Scene: A twilight forest of giant gnarled trunks and dense tangled roots, dim violet dusk filtering through canopy, subtle fireflies and moss, mysterious dark green and plum atmosphere"
+    },
+    {
+      "id": "highlands",
+      "type": "background",
+      "prompt": "Use case: stylized-concept. Production wide horizontal battle panorama for HORDEBREAKER, detailed hand-painted atmospheric dark fantasy matching richly painted Emerald Forest and medieval city backgrounds. Wide landscape 3:1 composition, side-scrolling camera near ground height. Layered atmospheric depth, intricate natural materials, painterly textures, restrained contrast in the middle where sprites fight. Bottom 18% is continuous level walkable ground in side view, empty and unobstructed, no foreground objects blocking actors. No characters, creatures, UI, writing, logos, frames or text. Not vector, not flat geometric, not cartoon, not pixel art, not photorealistic. Scene: Rugged alpine highlands with layered crags and distant jagged peaks, ruined stone watchtowers, windswept tawny grass, late amber sunlight under cool grey clouds"
+    },
+    {
+      "id": "dwarf",
+      "type": "background",
+      "prompt": "Use case: stylized-concept. Production wide horizontal battle panorama for HORDEBREAKER, detailed hand-painted atmospheric dark fantasy matching richly painted Emerald Forest and medieval city backgrounds. Wide landscape 3:1 composition, side-scrolling camera near ground height. Layered atmospheric depth, intricate natural materials, painterly textures, restrained contrast in the middle where sprites fight. Bottom 18% is continuous level walkable ground in side view, empty and unobstructed, no foreground objects blocking actors. No characters, creatures, UI, writing, logos, frames or text. Not vector, not flat geometric, not cartoon, not pixel art, not photorealistic. Scene: A monumental dwarven city carved into the mountain, massive angular stone halls, bronze doors, warm forge windows, distant aqueducts and bridges, charcoal stone and copper"
+    },
+    {
+      "id": "marsh",
+      "type": "background",
+      "prompt": "Use case: stylized-concept. Production wide horizontal battle panorama for HORDEBREAKER, detailed hand-painted atmospheric dark fantasy matching richly painted Emerald Forest and medieval city backgrounds. Wide landscape 3:1 composition, side-scrolling camera near ground height. Layered atmospheric depth, intricate natural materials, painterly textures, restrained contrast in the middle where sprites fight. Bottom 18% is continuous level walkable ground in side view, empty and unobstructed, no foreground objects blocking actors. No characters, creatures, UI, writing, logos, frames or text. Not vector, not flat geometric, not cartoon, not pixel art, not photorealistic. Scene: A cursed marsh with ancient flooded ruins, twisted trees and hanging moss, dim green mist, stagnant pools behind the combat path, muted olive and peat brown"
+    },
+    {
+      "id": "ruins",
+      "type": "background",
+      "prompt": "Use case: stylized-concept. Production wide horizontal battle panorama for HORDEBREAKER, detailed hand-painted atmospheric dark fantasy matching richly painted Emerald Forest and medieval city backgrounds. Wide landscape 3:1 composition, side-scrolling camera near ground height. Layered atmospheric depth, intricate natural materials, painterly textures, restrained contrast in the middle where sprites fight. Bottom 18% is continuous level walkable ground in side view, empty and unobstructed, no foreground objects blocking actors. No characters, creatures, UI, writing, logos, frames or text. Not vector, not flat geometric, not cartoon, not pixel art, not photorealistic. Scene: Ruins of a fallen medieval kingdom, collapsed towers and cracked arches, ivy-covered walls, distant ruined palace under dusty violet dusk, faded royal banners"
+    },
+    {
+      "id": "hellcanyon",
+      "type": "background",
+      "prompt": "Use case: stylized-concept. Production wide horizontal battle panorama for HORDEBREAKER, detailed hand-painted atmospheric dark fantasy matching richly painted Emerald Forest and medieval city backgrounds. Wide landscape 3:1 composition, side-scrolling camera near ground height. Layered atmospheric depth, intricate natural materials, painterly textures, restrained contrast in the middle where sprites fight. Bottom 18% is continuous level walkable ground in side view, empty and unobstructed, no foreground objects blocking actors. No characters, creatures, UI, writing, logos, frames or text. Not vector, not flat geometric, not cartoon, not pixel art, not photorealistic. Scene: An immense infernal canyon, layered jagged red-black cliffs and distant lava rivers far below, ash-filled orange dusk, ancient stone bridges, dark oppressive atmosphere"
+    },
+    {
+      "id": "fortress",
+      "type": "background",
+      "prompt": "Use case: stylized-concept. Production wide horizontal battle panorama for HORDEBREAKER, detailed hand-painted atmospheric dark fantasy matching richly painted Emerald Forest and medieval city backgrounds. Wide landscape 3:1 composition, side-scrolling camera near ground height. Layered atmospheric depth, intricate natural materials, painterly textures, restrained contrast in the middle where sprites fight. Bottom 18% is continuous level walkable ground in side view, empty and unobstructed, no foreground objects blocking actors. No characters, creatures, UI, writing, logos, frames or text. Not vector, not flat geometric, not cartoon, not pixel art, not photorealistic. Scene: Approach to a dark demonic citadel, immense black stone walls and angular towers receding into crimson storm clouds, sparse ember-lit windows, ruined siege engines in the distant background"
+    }
+  ]
+}
