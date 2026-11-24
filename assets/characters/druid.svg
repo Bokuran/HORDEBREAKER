@@ -1,0 +1,46 @@
+<svg role="img" aria-label="Друид с лесным посохом и короной из рогов" xmlns="http://www.w3.org/2000/svg" width="256" height="320" viewBox="0 0 256 320">
+ <defs>
+  <linearGradient id="robe" x2="0" y2="1"><stop stop-color="#608b57"/><stop offset="1" stop-color="#243d35"/></linearGradient>
+  <linearGradient id="wood" x2="0" y2="1"><stop stop-color="#c79c60"/><stop offset="1" stop-color="#563e29"/></linearGradient>
+  <linearGradient id="skin" x2="0" y2="1"><stop stop-color="#e8bd95"/><stop offset="1" stop-color="#a76f55"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="5"/></filter>
+ </defs>
+ <ellipse cx="124" cy="302" rx="60" ry="9" fill="#000" opacity=".32"/>
+ <!-- living staff --> <path d="M197 300 Q179 236 197 168 Q212 104 202 48" fill="none" stroke="url(#wood)" stroke-width="12" stroke-linecap="round"/><path d="M199 76 Q161 43 177 21 Q209 26 207 57 Q224 19 246 35 Q244 69 211 82Z" fill="#68b86a" stroke="#254a33" stroke-width="5"/><circle cx="210" cy="55" r="11" fill="#d5ff9a" stroke="#f5ffe0" stroke-width="3"/><circle cx="210" cy="55" r="20" fill="#7cff9a" opacity=".35" filter="url(#glow)"/>
+ <!-- robe --> <path d="M88 112 Q59 136 61 202 L40 290 Q125 315 190 289 L165 200 Q172 141 151 113Z" fill="url(#robe)" stroke="#172c28" stroke-width="7"/><path d="M88 134 L122 179 L153 131 L167 286 L74 287Z" fill="#b5a875" opacity=".75"/><path d="M122 179 L117 295" stroke="#d9d3a0" stroke-width="5"/><path d="M84 213 Q122 239 161 211" fill="none" stroke="#c3a66b" stroke-width="7"/>
+ <!-- hood and face --> <path d="M72 76 Q68 17 127 14 Q190 16 180 84 L158 123 L92 121Z" fill="#3f6548" stroke="#1d382b" stroke-width="7"/><path d="M91 62 Q126 35 160 62 L157 111 Q131 137 100 111Z" fill="url(#skin)" stroke="#553c34" stroke-width="5"/><path d="M95 84 Q108 72 120 83 M139 83 Q150 72 160 84" stroke="#33452e" stroke-width="5" stroke-linecap="round"/><path d="M113 111 Q130 119 145 108" fill="none" stroke="#704639" stroke-width="4"/><path d="M84 61 Q115 42 156 57" fill="none" stroke="#91b67a" stroke-width="6"/>
+ <!-- leafy mantle --> <path d="M74 124 Q42 92 31 113 Q30 143 63 154 Q35 160 47 185 Q72 188 91 160 L121 145Z M160 126 Q192 94 215 115 Q217 145 183 157 Q211 163 199 188 Q175 188 154 161 L129 145Z" fill="#4c8a54" stroke="#234a37" stroke-width="5"/><path d="M46 120 Q62 134 74 151 M207 122 Q188 136 175 153" stroke="#b4e28a" stroke-width="4" fill="none"/>
+ <!-- arms and bracers --> <path d="M72 142 Q42 161 44 203 L69 214 L98 169Z M165 142 Q188 163 185 201 L161 214 L140 168Z" fill="url(#skin)" stroke="#573d32" stroke-width="6"/><path d="M43 190 L73 193 L69 220 L42 215Z M160 190 L188 192 L187 218 L158 218Z" fill="#b69c66" stroke="#324a32" stroke-width="5"/>
+ <!-- leaf details --> <path d="M98 181 Q82 163 91 150 Q112 153 111 174 Q122 150 140 159 Q137 180 115 190Z" fill="#7fc56c" stroke="#345e3c" stroke-width="3"/><path d="M113 180 L124 165" stroke="#d9f4a0" stroke-width="2"/>
+ <!-- boots --> <path d="M69 278 L119 282 L119 302 L58 305Z M133 282 L179 277 L194 302 L132 305Z" fill="#493b2b" stroke="#1d2927" stroke-width="6"/><path d="M82 286 L107 289 M145 289 L173 285" stroke="#d1b879" stroke-width="4"/>
+ <path d="M120 211 Q127 196 134 211 Q127 224 120 211Z" fill="#c7ef8b" stroke="#426b47" stroke-width="3"/>
+
+ <defs>
+   <radialGradient id="wildGlow"><stop stop-color="#f0ffc3" stop-opacity=".96"/><stop offset=".46" stop-color="#78ffae" stop-opacity=".45"/><stop offset="1" stop-color="#32bc86" stop-opacity="0"/></radialGradient>
+   <linearGradient id="barkTrim" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#e9d7a3"/><stop offset="1" stop-color="#8d613e"/></linearGradient>
+ </defs>
+ <!-- Antler crown with living leaves. -->
+ <g fill="none" stroke="url(#barkTrim)" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M94 49 Q69 29 67 7 M74 33 Q53 27 43 12 M72 28 Q83 13 80 1" stroke-width="8"/>
+  <path d="M159 50 Q181 32 189 7 M180 30 Q202 20 208 9 M181 27 Q170 9 174 2" stroke-width="8"/>
+ </g>
+ <g fill="#9ed979" stroke="#427349" stroke-width="2">
+  <path d="M65 12 Q53 -2 43 10 Q50 23 65 12Z"/>
+  <path d="M76 17 Q92 4 87 -6 Q72 -7 76 17Z"/>
+  <path d="M191 11 Q201 -1 216 8 Q211 25 191 11Z"/>
+  <path d="M175 17 Q158 7 160 -6 Q177 -1 175 17Z"/>
+ </g>
+ <!-- Emerald talisman, glowing throat and mantle leaf embroidery. -->
+ <circle cx="122" cy="143" r="25" fill="url(#wildGlow)" opacity=".8"/>
+ <path d="M123 124 L133 143 L122 160 L111 142Z" fill="#a9f9ab" stroke="#f2ffc8" stroke-width="3"/>
+ <path d="M84 173 Q109 199 127 187 Q149 200 169 173 M81 201 Q124 216 169 202 M92 240 L110 251 L97 266 M149 250 L165 238 L158 266" fill="none" stroke="#c5e0a4" stroke-width="3.5"/>
+ <path d="M76 142 Q48 131 33 142 Q44 163 69 163 M174 148 Q197 130 222 141 Q211 164 187 163" fill="#60a868" stroke="#284d3b" stroke-width="3"/>
+ <!-- Additional twisted staff with branching vine and radiant nature core. -->
+ <path d="M196 96 Q176 120 186 138 M197 166 Q218 144 216 126 M199 224 Q174 211 180 188" stroke="#7d573c" stroke-width="5" fill="none"/>
+ <path d="M188 122 Q168 106 164 88 Q185 87 192 111 M216 135 Q231 111 245 120 Q237 139 216 140 M173 197 Q155 175 145 182 Q150 203 175 206" fill="#81d475" stroke="#2a6c48" stroke-width="3"/>
+ <circle cx="210" cy="55" r="28" fill="url(#wildGlow)" opacity=".9"/>
+ <circle cx="210" cy="55" r="7" fill="#f6ffcf"/>
+ <!-- Floating spores and rune stitching. -->
+ <g fill="#b8f9b0"><circle cx="233" cy="80" r="4"/><circle cx="177" cy="35" r="3"/><circle cx="222" cy="121" r="2"/><circle cx="54" cy="169" r="3"/><circle cx="155" cy="252" r="2.5"/></g>
+ <path d="M104 223 L116 214 L128 224 L141 212 L152 224 M97 270 Q120 278 144 270" stroke="#f1e4a5" stroke-width="3" fill="none"/>
+</svg>

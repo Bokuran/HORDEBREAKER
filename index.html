@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>HORDEBREAKER — Idle RPG</title>
+  <link rel="icon" type="image/webp" href="assets/logo.webp?v=33">
+  <link rel="stylesheet" href="css/style.css?v=50">
+</head>
+<body>
+  <div class="bg"><i class="orb o1"></i><i class="orb o2"></i><i class="orb o3"></i><div class="grain"></div></div>
+  <header class="top">
+    <div class="brand"><img class="logoImg" src="assets/logo.webp?v=33" alt="HORDEBREAKER — Idle RPG"></div>
+    <div class="resources">
+      <div class="res gold"><span>🪙</span><b id="gold">0</b></div>
+      <div class="res gem"><span>💎</span><b id="gems">0</b></div>
+      <div class="res dps"><span>⚔</span><b id="dps">0</b><small>урон/с</small></div>
+    </div>
+    <div class="topControls">
+      <button id="pauseBtn" class="iconBtn" title="Пауза (P)" aria-label="Пауза" aria-pressed="false">⏸</button>
+      <button id="speedBtn" class="iconBtn wide" title="Скорость боя" aria-label="Скорость боя">×1</button>
+      <button id="soundBtn" class="iconBtn" title="Выключить звук (M)" aria-label="Звук" aria-pressed="true">🔊</button>
+      <button id="helpBtn" class="iconBtn" title="Справка" aria-label="Справка">?</button>
+      <button id="resetBtn" class="iconBtn danger" title="Сбросить прогресс" aria-label="Сбросить прогресс">↺</button>
+    </div>
+  </header>
+  <main class="game">
+    <section class="stagePanel">
+      <div id="hint" class="hint">
+        <span>Монстры бьют героев напрямую. Следите за HP над головой, броня защищает каждого, а Некромант лечит раненых.</span>
+        <button id="hintClose" aria-label="Закрыть подсказку">✕</button>
+      </div>
+      <div class="stageHead">
+        <div class="zone"><span id="zoneIcon"><img class="zoneArt" src="assets/zones/icons/city.svg" alt=""></span><div><b id="zoneName">Город Рассвета</b><small id="waveLabel">Волна 1</small></div></div>
+        <div class="waveTools">
+          <span id="stageNow" class="stageNow">этап 1/10</span>
+          <div id="stageChain" class="stageChain" aria-label="Этапы текущей локации"></div>
+          <button id="mapBtn" class="miniBtn mapBtn" title="Карта прогресса: локации, уровни, этапы" aria-label="Карта прогресса"><svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 5 9 3l6 2 6-2v16l-6 2-6-2-6 2Z"/><path d="M9 3v16M15 5v16"/><path d="m5 13 4-3 6 4 4-4" stroke-dasharray="2 2"/></svg><span>Карта прогресса</span></button>
+          <span id="progress" class="progressText">0/0</span>
+          <button id="autoBtn" class="autoChip">АВТО ▶</button>
+        </div>
+      </div>
+      <div class="stageWrap" id="stageWrap">
+        <canvas id="stage"></canvas>
+        <div class="bossBar" id="bossBar"><span id="bossName">БОСС</span><div class="bossBars"><div class="bossHealth" role="progressbar" aria-label="Здоровье босса" aria-valuemin="0" aria-valuemax="100"><i id="bossFill"></i></div><div class="bossTimerTrack" role="progressbar" aria-label="Оставшееся время" aria-valuemin="0" aria-valuemax="100"><i id="bossTimerFill"></i></div></div><b id="bossTime">45с</b></div>
+        <div class="scan"></div><div id="banner" class="banner"></div>
+        <div id="pauseOverlay" class="pauseOverlay">ПАУЗА</div><div id="hurt" class="hurt"></div>
+      </div>
+      <div class="stageFoot">
+        <div class="party">
+          <span>❤️ Отряд</span><div class="hp"><i id="partyFill"></i></div><b id="partyText">0/0 в строю</b>
+          <small id="partyStats">HP 0/0</small>
+        </div>
+        <div class="dropInfo">🎁 Дроп: <b id="dropInfo">10% · 💎 28% с босса</b></div>
+      </div>
+    </section>
+    <nav class="mobileTabs" aria-label="Навигация по лагерю">
+      <button data-tab="heroes" class="on">⚔ Герои</button>
+      <button data-tab="squad">👥 Отряд</button>
+      <button data-tab="bag">🎒 Инвентарь</button>
+      <button data-tab="camp">🏕 Лагерь</button>
+    </nav>
+    <section class="panels">
+      <article class="panel heroes active" data-panel="heroes">
+        <div class="panelHead"><h2>ГЕРОИ</h2><em>Каталог и досье персонажей</em></div>
+        <div class="panelBody" id="heroList"></div>
+      </article>
+      <article class="panel squad" data-panel="squad">
+        <div class="panelHead"><h2>УПРАВЛЕНИЕ ОТРЯДОМ</h2><em id="squadCount">0/4 бойца</em></div>
+        <div class="panelBody squadBody">
+          <div class="squadIntro"><b>СОСТАВ ЭКСПЕДИЦИИ</b><span>Здесь нанимай героев, отправляй их в резерв и меняй порядок построения. Любой боец может занять переднюю позицию.</span></div>
+          <div class="squadLayout">
+            <section class="squadSection"><h3>⚔ АКТИВНЫЙ ОТРЯД</h3><div id="squadActive"></div></section>
+            <section class="squadSection"><h3>🪑 РЕЗЕРВ И НАЁМ</h3><div id="squadReserve"></div></section>
+          </div>
+          <section class="damagePanel"><div class="damageHead"><b>УРОН ЗА СРАЖЕНИЕ</b><span id="damageTotal">0</span></div><p>Счётчик относится к текущему сражению и обнуляется с началом следующей волны. Учитывается только реально снятое здоровье врагов после их защиты.</p><div id="damageStats"></div></section>
+        </div>
+      </article>
+      <article class="panel bag" data-panel="bag">
+        <div class="panelHead"><h2>ИНВЕНТАРЬ <em id="bagCount">0/60</em></h2><button id="sellSpare" class="miniBtn" title="Продать всё, что не входит в лучший комплект отряда">🧹 Продать лишнее</button></div>
+        <div class="filters">
+          <select id="filterSlot"><option value="all">Все слоты</option></select>
+          <select id="filterRarity"><option value="all">Любая редкость</option></select>
+          <select id="sortItems"><option value="new">Сначала новые</option><option value="power">Сначала сильные</option><option value="value">Сначала дорогие</option></select>
+          <select id="autoSell" title="Автопродажа: очищает сумку и новый дроп. Вещи только для ненанятых классов продаются; экипировка нанятых героев и запас на будущие уровни защищены.">
+            <option value="off">Автопродажа: выкл</option>
+            <option value="spare">Авто: всё лишнее</option>
+          </select>
+        </div>
+        <div class="panelBody items" id="itemList"></div>
+      </article>
+      <article class="panel camp" data-panel="camp">
+        <div class="panelHead"><h2>ЛАГЕРЬ</h2></div>
+        <div class="panelBody atlasBody">
+          <div class="atlasIntro"><div><span class="eyebrow">НАСЛЕДИЕ ЭКСПЕДИЦИИ</span><h3>АТЛАС РАЗВИТИЯ</h3><p>Вкладывай золото в четыре ветви развития. Каждый изученный узел навсегда усиливает экспедицию.</p></div><div class="atlasWallet">🪙 <b id="atlasGold">0</b></div></div>
+          <div class="atlasConstellation" id="atlasConstellation">
+            <div class="atlasTreeTabs" role="tablist" aria-label="Ветви Атласа">
+              <button id="atlasTabGold" class="on" type="button" role="tab" data-atlas-tab="gold" aria-controls="atlasSceneGold" aria-selected="true">🪙 Золото</button>
+              <button id="atlasTabHealth" type="button" role="tab" data-atlas-tab="health" aria-controls="atlasSceneHealth" aria-selected="false">❤ Здоровье</button>
+              <button id="atlasTabDamage" type="button" role="tab" data-atlas-tab="damage" aria-controls="atlasSceneDamage" aria-selected="false">⚔ Урон</button>
+              <button id="atlasTabLoot" type="button" role="tab" data-atlas-tab="loot" aria-controls="atlasSceneLoot" aria-selected="false">🎁 Добыча</button>
+            </div>
+            <div class="atlasTreeScenes">
+              <section class="atlasTreeScene goldBranch" id="atlasSceneGold" data-atlas-scene="gold" role="tabpanel" aria-labelledby="atlasTabGold">
+                <div class="atlasTreeHeading"><strong>🪙 ЗОЛОТЫЕ ТРОПЫ</strong><span>Дополнительное золото за победы</span></div>
+                <div class="atlasNodes atlasGalaxy" id="goldNodes"></div>
+              </section>
+              <section class="atlasTreeScene healthBranch" id="atlasSceneHealth" data-atlas-scene="health" role="tabpanel" aria-labelledby="atlasTabHealth" hidden>
+                <div class="atlasTreeHeading"><strong>❤ ЗАКАЛКА ГЕРОЕВ</strong><span>Пассивные улучшения здоровья отряда</span></div>
+                <div class="atlasNodes atlasGalaxy" id="healthNodes"></div>
+              </section>
+              <section class="atlasTreeScene damageBranch" id="atlasSceneDamage" data-atlas-scene="damage" role="tabpanel" aria-labelledby="atlasTabDamage" hidden>
+                <div class="atlasTreeHeading"><strong>⚔ ВОИНСКОЕ НАСЛЕДИЕ</strong><span>Пассивное усиление урона героев</span></div>
+                <div class="atlasNodes atlasGalaxy" id="damageNodes"></div>
+              </section>
+              <section class="atlasTreeScene lootBranch" id="atlasSceneLoot" data-atlas-scene="loot" role="tabpanel" aria-labelledby="atlasTabLoot" hidden>
+                <div class="atlasTreeHeading"><strong>🎁 ОХОТНИЧЬИ ЗНАНИЯ</strong><span>Дополнительный шанс найти предмет</span></div>
+                <div class="atlasNodes atlasGalaxy" id="lootNodes"></div>
+              </section>
+            </div>
+            <div class="atlasInspector" aria-live="polite">
+              <div class="atlasInspectorIcon" id="atlasSelectedIcon" aria-hidden="true">✦</div>
+              <div class="atlasInspectorText"><span id="atlasSelectedStatus" class="atlasInspectorStatus">Следующая пассивка</span><strong id="atlasSelectedName">Медный нюх</strong><span id="atlasSelectedEffect">+3% золота</span></div>
+              <button id="atlasInvest" class="atlasInvest" type="button">Изучить узел</button>
+            </div>
+            <div class="atlasTreeLegend"><span><i class="legendLearned"></i> Изучено</span><span><i class="legendNext"></i> Доступно</span><span><i class="legendLocked"></i> Закрыто</span><span>Выбери узел, чтобы узнать его эффект</span></div>
+          </div>
+          <section class="divineExchange">
+            <div class="exchangeArt divineArtMark">✦</div>
+            <div class="exchangeInfo">
+              <span class="eyebrow">РЕДКАЯ ДОБЫЧА С БОССОВ</span>
+              <h3>ОБМЕННИК БОЖЕСТВЕННЫХ РЕЛИКВИЙ</h3>
+              <p>Выбери уровень божественного снаряжения. Более высокие реликвии сильнее, но стоят больше алмазов. Каждый предмет выпадает случайным образом.</p>
+              <label class="divineLevelLabel" for="divineLevel">Уровень божественной реликвии</label>
+              <select id="divineLevel" class="divineLevelPicker" aria-label="Уровень божественного снаряжения">
+                <option value="20">Уровень 20 — 5 💎</option>
+                <option value="40">Уровень 40 — 8 💎</option>
+                <option value="60">Уровень 60 — 12 💎</option>
+                <option value="80">Уровень 80 — 17 💎</option>
+                <option value="100">Уровень 100 — 23 💎</option>
+              </select>
+              <small id="divineInfo">Уровень реликвии: 20 · Стоимость: 5 💎 · В наличии: 0</small>
+            </div>
+            <button id="divineBuy" class="divineBuy"><b>Получить реликвию</b><span>5 💎</span></button>
+          </section>
+          <div class="forgeNote"><b>⚒ МАСТЕРСКАЯ СНАРЯЖЕНИЯ</b><span>Золото можно вкладывать и в найденные вещи: закаляй предметы в инвентаре до 5 раз, повышая все характеристики на 8% за каждый ранг.</span></div>
+          <div class="stats atlasStats"><div><span>Убийств</span><b id="statKills">0</b></div><div><span>Боссов</span><b id="statBosses">0</b></div><div><span>Предметов</span><b id="statDrops">0</b></div><div><span>В бою</span><b id="statTime">0с</b></div></div>
+        </div>
+      </article>
+    </section>
+  </main>
+  <footer class="foot"><span id="saveDot">● автосохранение</span><span>Герои бьются автоматически · P — пауза · M — звук · H — справка</span><span class="conf">настройка: <b>config/*.js</b></span></footer>
+  <div id="toasts" class="toasts"></div><div id="modal" class="modal"></div>
+  <script src="js/boot.js?v=50"></script>
+  <script src="config/balance.js?v=50"></script>
+  <script src="config/heroes.js?v=50"></script>
+  <script src="config/monsters.js?v=52"></script>
+  <script src="config/levels.js?v=50"></script>
+  <script src="config/items.js?v=50"></script>
+  <script src="config/expansion.js?v=50"></script>
+  <script src="js/core.js?v=53"></script>
+  <script src="js/audio.js?v=50"></script>
+  <script src="js/battle-base.js?v=54"></script>
+  <script src="js/battle-fx.js?v=54"></script>
+  <script src="js/battle-skills.js?v=54"></script>
+  <script src="js/battle-draw.js?v=54"></script>
+  <script src="js/battle.js?v=54"></script>
+  <script src="js/ui.js?v=50"></script>
+  <script src="js/main.js?v=50"></script>
+  <script src="js/autoequip.js?v=50"></script>
+  <script src="js/savetools.js?v=50"></script>
+  <script src="js/audio-ui.js?v=50"></script>
+</body>
+</html>

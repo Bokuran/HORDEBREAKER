@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="320" viewBox="0 0 256 320">
+ <defs>
+  <linearGradient id="fur" x2="0" y2="1"><stop stop-color="#b77a50"/><stop offset="1" stop-color="#513126"/></linearGradient>
+  <linearGradient id="steel" x2="0" y2="1"><stop stop-color="#aab5bd"/><stop offset=".48" stop-color="#586570"/><stop offset="1" stop-color="#242d36"/></linearGradient>
+  <linearGradient id="skin" x2="0" y2="1"><stop stop-color="#e0a77e"/><stop offset="1" stop-color="#9b5946"/></linearGradient>
+  <filter id="shadow"><feGaussianBlur stdDeviation="4"/></filter>
+ </defs>
+ <ellipse cx="126" cy="300" rx="72" ry="10" fill="#000" opacity=".35" filter="url(#shadow)"/>
+ <!-- axe --> <path d="M203 58 L221 287" stroke="#533d2c" stroke-width="13" stroke-linecap="round"/><path d="M198 57 Q218 17 245 34 Q242 81 210 105 Q214 76 198 57Z" fill="url(#steel)" stroke="#d4dce0" stroke-width="4"/><path d="M199 59 L211 96" stroke="#e8edf0" stroke-width="3"/>
+ <!-- body and legs --> <path d="M88 190 L83 275 L111 286 L128 225 L144 286 L174 278 L164 186Z" fill="#332a2a" stroke="#161b20" stroke-width="6"/><path d="M82 270 L76 300 L119 303 L120 284 M143 283 L151 303 L190 296 L176 268" fill="#57463d" stroke="#161b20" stroke-width="7"/><path d="M75 296 L120 298 L116 310 L67 310Z M151 297 L192 290 L201 305 L151 313Z" fill="#252b32" stroke="#a5aeb4" stroke-width="3"/>
+ <path d="M68 104 Q39 127 52 194 L77 227 L184 224 L203 186 Q207 133 177 103 L147 89 L98 91Z" fill="url(#steel)" stroke="#202a32" stroke-width="7"/>
+ <!-- fur mantle --> <path d="M55 116 Q36 91 61 78 L86 91 L104 73 L129 91 L153 71 L171 91 L194 83 Q215 104 190 137 L166 150 L76 149Z" fill="url(#fur)" stroke="#3a2822" stroke-width="7"/><path d="M65 110 L82 127 L98 107 L116 130 L133 105 L151 127 L174 105 L190 119" fill="none" stroke="#d3a078" stroke-width="5" opacity=".7"/>
+ <!-- arms --> <path d="M72 125 Q43 142 32 192 L48 211 Q77 181 96 158Z" fill="url(#skin)" stroke="#402c28" stroke-width="7"/><path d="M175 126 Q201 139 210 181 L192 199 Q170 175 154 153Z" fill="url(#skin)" stroke="#402c28" stroke-width="7"/><path d="M40 183 L67 192 L61 220 L32 211Z M187 176 L215 173 L226 199 L197 207Z" fill="url(#steel)" stroke="#273039" stroke-width="5"/>
+ <!-- head --> <path d="M83 39 Q128 8 169 42 L165 101 Q145 130 106 112 Q78 91 83 39Z" fill="url(#skin)" stroke="#4d302a" stroke-width="6"/><path d="M79 54 Q69 16 115 16 Q161 7 178 49 L159 42 L139 31 L111 45 L91 65Z" fill="#49302b"/><path d="M87 81 Q103 70 118 81 M141 80 Q154 70 166 80" stroke="#4b2b26" stroke-width="7" stroke-linecap="round"/><path d="M105 100 Q127 118 154 96 Q155 143 129 153 Q103 142 105 100Z" fill="#58342d"/><path d="M115 112 L126 140 L139 111" fill="none" stroke="#c58a60" stroke-width="4"/>
+ <!-- shoulder plates --> <path d="M48 132 Q56 103 91 112 L99 151 L64 166Z M157 111 Q191 98 207 128 L189 166 L158 151Z" fill="url(#steel)" stroke="#1b252d" stroke-width="6"/><path d="M58 129 L82 121 L89 145 L65 153Z M171 124 L194 132 L183 154 L163 145Z" fill="none" stroke="#d4dce0" stroke-width="3"/>
+ <!-- belt and rune --> <path d="M80 204 L178 201 L174 225 L78 230Z" fill="#59402d" stroke="#251e1b" stroke-width="5"/><circle cx="128" cy="216" r="11" fill="#d58a4d" stroke="#272b30" stroke-width="4"/><path d="M128 209 L132 216 L128 223 L124 216Z" fill="#ffe0a0"/>
+ <path d="M97 239 L120 242 M141 241 L165 238" stroke="#8f674e" stroke-width="7" stroke-linecap="round"/>
+</svg>
